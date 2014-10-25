@@ -14,8 +14,8 @@ var session      = require('express-session');
 
 var routes       = require('./routes/index');
 
+// Database 
 var configDB = require('./config/database.js');
-
 mongoose.connect(configDB.url);
 
 var app = express();
@@ -46,9 +46,8 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
-// routes ======================================================================
-require('./routes/index')(app, passport); // load our routes and pass in our app and fully configured passport
-//app.use('/', routes);
+// routes 
+require('./routes/index')(app, passport); // load routes and pass in the app and fully configured passport
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -56,8 +55,6 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
-
-/// error handlers
 
 // development error handler
 // will print stacktrace
