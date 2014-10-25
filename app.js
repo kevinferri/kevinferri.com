@@ -7,11 +7,12 @@ var bodyParser   = require('body-parser');
 var nunjucks     = require('nunjucks');
 var mongo        = require('mongodb');
 var mongoose     = require('mongoose');
-var routes       = require('./routes/index');
 var passport     = require('passport');
 var flash        = require('connect-flash');
 var morgan       = require('morgan');
 var session      = require('express-session');
+
+var routes       = require('./routes/index');
 
 var configDB = require('./config/database.js');
 
