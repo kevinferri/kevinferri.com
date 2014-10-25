@@ -9,8 +9,8 @@ module.exports = function(app, passport) {
   });
 
   // GET login form
-  app.get('./users/login', function(req, res) {
-    res.render('login.html', { 
+  app.get('/users/login', function(req, res) {
+    res.render('/users/login.html', { 
       title: 'Login',
       message: req.flash('loginMessage') 
     }); 
@@ -20,8 +20,8 @@ module.exports = function(app, passport) {
   // app.post('/login', do all our passport stuff here);
 
   // GET signup form
-  app.get('./users/signup', function(req, res) {
-    res.render('signup.html', { 
+  app.get('/users/signup', function(req, res) {
+    res.render('/users/signup.html', { 
       title: 'Sign up',
       message: req.flash('signupMessage') 
     });
@@ -31,15 +31,15 @@ module.exports = function(app, passport) {
   // app.post('/signup', do all our passport stuff here);
 
   // GET profile page
-  app.get('/.users/profile', isLoggedIn, function(req, res) {
-    res.render('profile.html', {
+  app.get('/users/profile', isLoggedIn, function(req, res) {
+    res.render('/users/profile.html', {
       title: 'My profile',
       user : req.user // get the user out of session and pass to template
     });
   });
 
   // Logs you out, takes back to homepage
-  app.get('./users/logout', function(req, res) {
+  app.get('/users/logout', function(req, res) {
     req.logout();
     res.redirect('/');
   });
