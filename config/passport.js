@@ -15,11 +15,12 @@ module.exports = function(passport) {
     });
   });
 
-  // by default, if there was no name, it would just be called 'local'
+
+  // SIGNUP STRATEGY
   passport.use('local-signup', new LocalStrategy({
     usernameField : 'username',
     passwordField : 'password',
-    passReqToCallback : true // allows us to pass back the entire request to the callback
+    passReqToCallback : true // pass back the entire request to the callback
   },
   function(req, username, password, done) {
     // User.findOne wont fire unless data is sent back
@@ -32,7 +33,6 @@ module.exports = function(passport) {
           return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
         } else {
           var newUser = new User();
-           // set the user's local credentials
           newUser.local.username = username;
           newUser.local.password = newUser.generateHash(password);
           newUser.save(function(err) {
@@ -45,4 +45,26 @@ module.exports = function(passport) {
       });    
     });
   }));
+
+  // LOGIN STRATEGY
+  passport.use('local-login', new LocalStrategy({
+    usernameField : 'username',
+    passwordField : 'password',
+    passReqToCallback : true
+  },
+  function(req, username, password, done) {
+    User.findOne({ 'local.username' :  username }, function(err, user) {
+      if (err) {
+        return done(err);
+      }
+      if (!user) {
+        return done(null, false, req.flash('loginMessage', 'No user found.'));
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, req.flash('loginMessage', 'Incorrect password.'));
+      }
+      return done(null, user);
+    });
+  }));
+
 };
