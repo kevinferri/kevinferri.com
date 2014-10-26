@@ -32,15 +32,15 @@ module.exports = function(passport) {
           return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
         } else {
           var newUser = new User();
-            // set the user's local credentials
-          newUser.local.email    = username;
+           // set the user's local credentials
+          newUser.local.username = username;
           newUser.local.password = newUser.generateHash(password);
           newUser.save(function(err) {
             if (err) {
               throw err;
             }
             return done(null, newUser);
-            });
+          });
         }
       });    
     });
