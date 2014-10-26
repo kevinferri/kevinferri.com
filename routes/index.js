@@ -16,6 +16,13 @@ module.exports = function(app, passport) {
     }); 
   });
 
+  // POST login form
+  app.post('/users/login', passport.authenticate('local-login', {
+    successRedirect : '/users/profile',
+    failureRedirect : '/users/login',
+    failureFlash : true 
+  }));
+
   // process the login form
   // app.post('/login', do all our passport stuff here);
 
@@ -31,7 +38,7 @@ module.exports = function(app, passport) {
   app.post('/users/signup', passport.authenticate('local-signup', {
     successRedirect : '/users/profile',
     failureRedirect : '/users/signup',
-    failureFlash : true
+    failureFlash : true,
   }));
 
   // process the signup form
