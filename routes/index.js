@@ -21,7 +21,7 @@ module.exports = function(app, passport) {
   app.post('/users/login', passport.authenticate('local-login', {
     successRedirect: '/users/profile',
     failureRedirect: '/users/login',
-    failureFlash : true 
+    failureFlash: true 
   }));
 
   // GET signup form
@@ -52,7 +52,13 @@ module.exports = function(app, passport) {
     req.logout();
     res.redirect('/');
   });
-  
+
+  app.get('/notes', function(req, res) {
+    res.render('/notes/index.html', {
+      title: 'Notes',
+      jumbotron: 'Notes'
+    });
+  });  
 };
 
 // route middleware to make sure a user is logged in
