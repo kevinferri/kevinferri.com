@@ -12,7 +12,8 @@ var flash        = require('connect-flash');
 var morgan       = require('morgan');
 var session      = require('express-session');
 
-var routes       = require('./routes/index');
+var routes       = require('./routes/');
+//require('./routes/')(app);
 
 // Database 
 var configDB = require('./config/database.js');
@@ -28,8 +29,8 @@ app.set('view engine', 'nunjucks');
 
 nunjucks.configure('views', {
   autoescape: true,
-  express : app,
-  watch : true
+  express: app,
+  watch: true
 });
 
 app.use(favicon());
@@ -47,7 +48,7 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes 
-require('./routes/index')(app, passport); // load routes and pass in the app and fully configured passport
+require('./routes/index.js')(app, passport); // load routes and pass in the app and fully configured passport
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

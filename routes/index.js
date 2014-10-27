@@ -1,10 +1,11 @@
-// routes/index.js
 module.exports = function(app, passport) {
 
   // GET homepage
   app.get('/', function(req, res) {
     res.render('./statics/home.html', {
-      title: 'Homepage'
+      title: 'Kevin Ferri - Home',
+      jumbotron: 'Hey, I&rsquo;m Kevin',
+      user: req.user
     });
   });
 
@@ -18,13 +19,10 @@ module.exports = function(app, passport) {
 
   // POST login form
   app.post('/users/login', passport.authenticate('local-login', {
-    successRedirect : '/users/profile',
-    failureRedirect : '/users/login',
+    successRedirect: '/users/profile',
+    failureRedirect: '/users/login',
     failureFlash : true 
   }));
-
-  // process the login form
-  // app.post('/login', do all our passport stuff here);
 
   // GET signup form
   app.get('/users/signup', function(req, res) {
@@ -36,19 +34,16 @@ module.exports = function(app, passport) {
 
   // POST signup form
   app.post('/users/signup', passport.authenticate('local-signup', {
-    successRedirect : '/users/profile',
-    failureRedirect : '/users/signup',
-    failureFlash : true,
+    successRedirect: '/users/profile',
+    failureRedirect: '/users/signup',
+    failureFlash: true,
   }));
-
-  // process the signup form
-  // app.post('/signup', do all our passport stuff here);
 
   // GET profile page
   app.get('/users/profile', isLoggedIn, function(req, res) {
     res.render('/users/profile.html', {
-      title: 'My profile',
-      user : req.user // get the user out of session and pass to template
+      title: 'My Profile',
+      user: req.user
     });
   });
 
@@ -57,11 +52,12 @@ module.exports = function(app, passport) {
     req.logout();
     res.redirect('/');
   });
+  
 };
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) { // if user is authenticated in the session, carry on 
+  if (req.isAuthenticated()) {
     return next();
   }
   res.redirect('/');
