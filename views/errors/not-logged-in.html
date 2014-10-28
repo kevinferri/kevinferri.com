@@ -1,0 +1,18 @@
+{% extends '/layouts/application.html' %}
+
+  {% block nav %}
+    {% include "/layouts/nav.html" %}
+  {% endblock %}
+
+  {% block content %}
+
+    <div class="container">
+
+      <h1 class="error">Sorry&hellip;but you have to be logged in to see this page.</h1>
+      <hr>
+      <p>If you have an account, you can login <a href="/users/login">here</a>.</p>
+      <p>If you don&rsquo;t have an account, you can sign up <a href="/users/signup">here</a>.</p>
+
+    </div>
+
+  {% endblock %}
