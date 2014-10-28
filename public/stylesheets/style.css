@@ -25,3 +25,11 @@ body {
   font-size: 16px;
   font-weight: 300;
 }
+
+.error {
+  color: #ed4e6e;
+}
+
+form button {
+  width: 100%;
+}
