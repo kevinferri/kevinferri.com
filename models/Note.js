@@ -13,8 +13,8 @@ var noteSchema = ({
     unique: true
   },
   author: {
-    type: String,
-    required: true
+    _id: String,
+    username: String,
   },
   body: {
     type: String,
@@ -28,5 +28,9 @@ var noteSchema = ({
     default: Date.now
   }
 });
+
+/*noteSchema.methods.generateSlug = function(title) {
+  return title.toString().toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '').replace(/\-\-+/g, '-').replace(/^-+/, '').replace(/-+$/, '');
+}*/
 
 module.exports = mongoose.model('Note', noteSchema);
