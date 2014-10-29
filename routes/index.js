@@ -5,7 +5,7 @@ module.exports = function(app, passport) {
 
   // GET homepage
   app.get('/', function(req, res) {
-    res.render('./statics/home.html', {
+    res.render('/statics/home.html', {
       title: 'Kevin Ferri - Home',
       jumbotron: 'Hey, I&rsquo;m Kevin',
       user: req.user
@@ -15,7 +15,7 @@ module.exports = function(app, passport) {
 
   // GET homepage
   app.get('/about', function(req, res) {
-    res.render('./statics/about.html', {
+    res.render('/statics/about.html', {
       title: 'Kevin Ferri - About',
       jumbotron: 'About Me',
       user: req.user
@@ -69,10 +69,16 @@ module.exports = function(app, passport) {
 
   // GET list of notes
   app.get('/notes', function(req, res) {
-    res.render('/notes/index.html', {
-      title: 'Notes',
-      jumbotron: 'Notes',
-      user: req.user
+    Note.find(function(err, notes) {
+      if (err) {
+        throw err;
+      }
+      res.render('/notes/index.html', {
+        title: 'Notes',
+        jumbotron: 'Notes',
+        notes: notes,
+        user: req.user
+      });
     });
   });  
 
@@ -84,6 +90,24 @@ module.exports = function(app, passport) {
       user: req.user
     });
   }); 
+
+  // GET individual note
+  app.get('/notes/:slug', function(req, res) {
+    Note.findOne({'slug': req.params.slug}, function(err, note) {
+      if (!note) {
+        res.render('./errors/note-not-found.html', {
+          slug: req.params.slug
+        });
+      } else {
+      res.render('notes/show.html', {
+        title: note.title,
+        jumbotron: note.title,
+        note: note,
+        users: req.user
+      });
+    }
+    });  
+  });
 
   // POST new note
   app.post('/notes/new', function(req, res) {
@@ -99,7 +123,20 @@ module.exports = function(app, passport) {
     });
     note.save(function(err) {
       if (err) {
-        throw err;
+        if (err.code === 11000) {
+          res.render('/notes/new.html', {
+            title: 'Add A Note',
+            jumbotron: 'Add A Note',
+            user: req.user,
+            prevTitle: req.body.title,
+            notebook: req.body.notebook,
+            body: req.body.body,
+            message: 'There is already a note with that title.'
+          });
+        } else {
+          console.log(err);
+          throw err;
+        }
       } 
       else {
         res.redirect('/notes');
