@@ -16,11 +16,19 @@
     </div>
 
     <div class="container">
+
       {% if notes.length > 0 %}
 
+        {% for note in notes %}
+          <a href="/notes/{{ note.slug }}">{{ note.title }}</a> - {{ note.body }} - Added on {{ note.createdAt }} by {{ note.author.username }}
+        {% endfor %}
+
       {% else %}
-      <p class="error">No notes have been added yet.</p>
+
+        <p class="error">No notes have been added yet.</p>
+
       {% endif %}
+
       <hr>
       <p>Hey! You can add a note too if you want. Just create an account <a href="/users/signup/">here</a>.</p>
     </div>
