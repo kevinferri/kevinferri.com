@@ -6,16 +6,22 @@
 
   {% block content %}
 
-    <div class="jumbotron text-center">
-      <h1>{{ jumbotron }}<small> by {{ note.author.username }} @ {{ note.createdAt }} in the {{ note.notebook }} notebook</small></h1>
-    </div>
-
     <div class="container">
 
-      <p>{{ note.body }}</p>
+      <div class="row">
 
-      <hr>
-      <p>Hey! You can add a note too if you want. Just create an account <a href="/users/signup/">here</a>.</p>
+        <div class="col-md-8">
+          <h1>{{ note.title }}</h1>
+          <p><small>Written by {{ note.author.username }} in {{ note.notebook }} on {{ note.createdAt }} </small></p>
+          <br>
+          <p>{{ note.body }}</p>
+        </div>
+
+        <div class="col-md-4">
+          <h4>More notes</h4>
+        </div>
+      </div>
+
     </div>
 
   {% endblock %}
