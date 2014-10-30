@@ -1,3 +1,5 @@
+// Eventually need to seperate these into different files and include them into one
+
 var Note = require('../models/Note.js');
 var utils = require('utils');
 
@@ -139,7 +141,7 @@ module.exports = function(app, passport) {
         }
       } 
       else {
-        res.redirect('/notes');
+        res.redirect('/notes'); // Should pass a confirmation message that note was added successfully
       }
     });
   });
