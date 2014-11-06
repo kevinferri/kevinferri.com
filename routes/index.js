@@ -15,7 +15,7 @@ module.exports = function(app, passport) {
   });
 
 
-  // GET homepage
+  // GET about page
   app.get('/about', function(req, res) {
     res.render('/statics/about.html', {
       title: 'Kevin Ferri - About',
