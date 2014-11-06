@@ -56,10 +56,16 @@ module.exports = function(app, passport) {
 
   // GET profile page
   app.get('/users/profile', isLoggedIn, function(req, res) {
-    res.render('/users/profile.html', {
-      title: 'My Profile',
-      jumbotron: 'My Profile',
-      user: req.user
+    Note.find({'user.local._id': req.user.local._id}, function(err, notes) {
+      if (err) {
+        throw err;
+      }
+      res.render('/users/profile.html', {
+        title: 'My Profile',
+        jumbotron: 'My Profile',
+        user: req.user,
+        notes: notes,
+      });
     });
   });
 
