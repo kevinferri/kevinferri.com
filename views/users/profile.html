@@ -11,18 +11,19 @@
 
     <div class="container">
 
-      <a href="/users/logout" class="btn btn-default btn-sm">Logout</a>
-      <p>ID: {{ user._id }}</p>
-      <p>USERNAME: {{ user.local.username }}</p>
-      <p>PASSWORD: {{ user.local.password }}</p>
-
-      <p>Notes</p>
+      <h2>Here Are the Notes You've Added</h2>
+      <hr>
 
       {% for note in notes %}
 
-        <p><a href="/notes/{{ note.slug }}">{{ note.title }}</a></p>
+        <p>
+          <a href="/notes/{{ note.slug }}">{{ note.title }}</a>
+          <br>
+          <a href="/notes/edit/{{ note.slug }}">Edit</a> | <a href="/notes/delete/{{ note.slug }}">Delete</a>
+        </p>
 
       {% endfor %}
+      
     </div>
 
   {% endblock %}
