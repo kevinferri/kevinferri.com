@@ -69,6 +69,26 @@ module.exports = function(app, passport) {
     });
   });
 
+  // GET individual user page
+  app.get('/users/:username', function(req, res) {
+    Note.find({'author.username': req.params.username}, function(err, notes) {
+      if (err) {
+        throw err;
+      }
+      if (notes.length === 0) {
+        res.render('./errors/user-not-found.html', {
+          username: req.params.username
+        });
+      } else {
+        res.render('users/show.html', {
+          user: req.params.username,
+          jumbotron: "Notes Added By",
+          notes: notes
+        });
+      }
+    });  
+  });
+
   // Logs you out, takes back to homepage
   app.get('/users/logout', function(req, res) {
     req.logout();
