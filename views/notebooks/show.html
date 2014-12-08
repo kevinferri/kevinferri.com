@@ -1,0 +1,31 @@
+{% extends '/layouts/application.html' %}
+
+  {% block nav %}
+    {% include "/layouts/nav.html" %}
+  {% endblock %}
+
+  {% block content %}
+
+    <div class="jumbotron text-center">
+      <h1>{{ jumbotron }}</h1>
+    </div>
+
+    <div class="container">
+
+      {% if notes.length > 0 %}
+
+        {% for note in notes %}
+          <p><a href="/notes/{{ note.slug }}">{{ note.title }}</a></p>
+        {% endfor %}
+
+      {% else %}
+
+        <p class="error">No notes have been added yet.</p>
+
+      {% endif %}
+
+      <hr>
+      
+    </div>
+
+  {% endblock %}
