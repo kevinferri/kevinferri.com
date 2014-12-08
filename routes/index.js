@@ -1,6 +1,7 @@
 // Eventually need to seperate these into different files and include them into one
 
 var Note = require('../models/Note.js');
+var User = require('../models/User.js');
 var utils = require('utils');
 
 module.exports = function(app, passport) {
@@ -69,26 +70,6 @@ module.exports = function(app, passport) {
     });
   });
 
-  // GET individual user page
-  app.get('/users/:username', function(req, res) {
-    Note.find({'author.username': req.params.username}, function(err, notes) {
-      if (err) {
-        throw err;
-      }
-      if (notes.length === 0) {
-        res.render('./errors/user-not-found.html', {
-          username: req.params.username
-        });
-      } else {
-        res.render('users/show.html', {
-          user: req.params.username,
-          jumbotron: "Notes Added By",
-          notes: notes
-        });
-      }
-    });  
-  });
-
   // Logs you out, takes back to homepage
   app.get('/users/logout', function(req, res) {
     req.logout();
@@ -146,7 +127,7 @@ module.exports = function(app, passport) {
       body: req.body.body,
       author: {
         _id: req.user._id,
-        username: req.user.local.username
+        username: req.user.local.username,
       }
     });
     note.save(function(err) {
@@ -169,6 +150,26 @@ module.exports = function(app, passport) {
       else {
         res.redirect('/notes'); // Should pass a confirmation message that note was added successfully
       }
+    });
+  });
+
+  // GET list of notebooks
+  app.get('/notebooks', function(req, res) {
+    Note.find(function(err, notes) {
+      res.render('notebooks/index.html', {
+        jumbotron: 'Notebooks',
+        notes: notes
+      });
+    });
+  });
+
+  // GET list of posts in a notebook
+  app.get('/notebooks/:slug', function(req, res) {
+    Note.find({'notebook': req.params.slug}, function(err, notes) {
+      res.render('notebooks/show.html', {
+        jumbotron: 'Notes in ' + req.params.slug,
+        notes: notes
+      });
     });
   });
 
