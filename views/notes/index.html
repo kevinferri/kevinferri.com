@@ -20,7 +20,7 @@
       {% if notes.length > 0 %}
 
         {% for note in notes %}
-          <p><a href="/notes/{{ note.slug }}">{{ note.title }}</a> - Added by {{ note.author.username }} on {{ note.createdAt }} in <a href="/notebooks/{{ note.notebook }}">{{ note.notebook }}</a></p>
+          <p><a href="/notes/{{ note.slug }}">{{ note.title }}</a> - Added by {{ note.author.username }} on {{ prettyDate(note.createdAt) }} in <a href="/notebooks/{{ note.notebook }}">{{ note.notebook }}</a></p>
         {% endfor %}
 
       {% else %}

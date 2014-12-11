@@ -86,7 +86,8 @@ module.exports = function(app, passport) {
         title: 'Notes',
         jumbotron: 'Notes',
         notes: notes,
-        user: req.user
+        user: req.user,
+        prettyDate: utils.prettyDate
       });
     });
   });  
