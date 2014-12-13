@@ -113,6 +113,7 @@ module.exports = function(app, passport) {
         title: note.title,
         jumbotron: note.title,
         note: note,
+        prettyDate: utils.prettyDate,
         users: req.user
       });
     }
