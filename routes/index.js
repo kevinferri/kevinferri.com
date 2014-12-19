@@ -15,36 +15,26 @@ module.exports = function(app, passport) {
     });
   });
 
-
-  // GET about page
-  app.get('/about', function(req, res) {
-    res.render('/statics/about.html', {
-      title: 'Kevin Ferri - About',
-      jumbotron: 'About Me',
-      user: req.user
-    });
-  });
-
   // GET login form
   app.get('/users/login', function(req, res) {
-    res.render('/users/login.html', { 
+    res.render('/users/login.html', {
       title: 'Login',
-      message: req.flash('loginMessage') 
-    }); 
+      message: req.flash('loginMessage')
+    });
   });
 
   // POST login form
   app.post('/users/login', passport.authenticate('local-login', {
     successRedirect: '/users/profile',
     failureRedirect: '/users/login',
-    failureFlash: true 
+    failureFlash: true
   }));
 
   // GET signup form
   app.get('/users/signup', function(req, res) {
-    res.render('/users/signup.html', { 
+    res.render('/users/signup.html', {
       title: 'Sign up',
-      message: req.flash('signupMessage') 
+      message: req.flash('signupMessage')
     });
   });
 
@@ -57,7 +47,7 @@ module.exports = function(app, passport) {
 
   // GET profile page
   app.get('/users/profile', isLoggedIn, function(req, res) {
-    Note.find({'user.local._id': req.user.local._id}, function(err, notes) {
+    Note.find({'author._id': req.user._id}, function(err, notes) {
       if (err) {
         throw err;
       }
@@ -65,7 +55,7 @@ module.exports = function(app, passport) {
         title: 'My Profile',
         jumbotron: 'My Profile',
         user: req.user,
-        notes: notes,
+        notes: notes
       });
     });
   });
@@ -90,7 +80,7 @@ module.exports = function(app, passport) {
         prettyDate: utils.prettyDate
       });
     });
-  });  
+  }); 
 
   // GET new notes form
   app.get('/notes/new', isLoggedIn, function(req, res) {
@@ -99,7 +89,7 @@ module.exports = function(app, passport) {
       jumbotron: 'Add A Note',
       user: req.user
     });
-  }); 
+  });
 
   // GET individual note
   app.get('/notes/:slug', function(req, res) {
@@ -117,7 +107,7 @@ module.exports = function(app, passport) {
         users: req.user
       });
     }
-    });  
+    }); 
   });
 
   // POST new note
@@ -148,7 +138,7 @@ module.exports = function(app, passport) {
           console.log(err);
           throw err;
         }
-      } 
+      }
       else {
         res.redirect('/notes'); // Should pass a confirmation message that note was added successfully
       }
@@ -165,7 +155,7 @@ module.exports = function(app, passport) {
     });
   });
 
-  // GET list of posts in a notebook
+  // GET list of notes in a notebook
   app.get('/notebooks/:slug', function(req, res) {
     Note.find({'notebook': req.params.slug}, function(err, notes) {
       res.render('notebooks/show.html', {
@@ -179,7 +169,7 @@ module.exports = function(app, passport) {
     res.render('/errors/not-logged-in.html', {
       title: 'Must Be Logged In',
     });
-  }); 
+  });
 
 };
 

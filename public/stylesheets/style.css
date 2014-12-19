@@ -1,29 +1,40 @@
+
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Oxygen', sans-serif;
+  font-weight: 300;
+}
+
+a {
+  color: rgb(41, 182, 246);
+}
+
+a:hover {
+  opacity: .7;
+  text-decoration: none;
+}
+
+.jumbotron h1 {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 300;
 }
 
 .navbar {
-  font-family: 'Raleway', sans-serif;
+  background: #ffffff;
   font-weight: 400;
 }
 
 .navbar .navbar-brand {
-  font-weight: 600;
-  letter-spacing: 3px;
-} 
+  font-weight: 400;
+  letter-spacing: 2px;
+}
 
 .jumbotron {
+  background: #ffffff;
   margin-top: -20px;
 }
 
-.jumbotron h1 {
-  font-family: 'Raleway', sans-serif;
-  font-weight: 600;
-}
-
 .container {
-  font-size: 16px;
-  font-weight: 300;
+  font-size: 1.6rem;
 }
 
 .error {
@@ -32,4 +43,13 @@ body {
 
 form button {
   width: 100%;
+}
+
+code {
+  font-family: 'Consolas';
+}
+
+.note-title {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 300;
 }
