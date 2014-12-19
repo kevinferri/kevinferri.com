@@ -14,7 +14,7 @@
           <h1>{{ note.title }}</h1>
           <p><small>Written by {{ note.author.username }} in <a href="/notebooks/{{ note.notebook }}">{{ note.notebook }}</a> on {{ prettyDate(note.createdAt) }} </small></p>
           <br>
-          <p>{{ note.body | safe }}</p>
+          <p class="note-body">{{ note.body | safe }}</p>
         </div>
 
         <div class="col-md-4">
