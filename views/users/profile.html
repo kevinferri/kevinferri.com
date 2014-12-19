@@ -11,18 +11,24 @@
 
     <div class="container">
 
-      <h2>Here Are the Notes You've Added</h2>
-      <hr>
+      {% if notes.length > 0 %}
 
-      {% for note in notes %}
+        <h2>Here Are the Notes You've Added</h2>
+        <hr>
 
-        <p>
-          <a href="/notes/{{ note.slug }}">{{ note.title }}</a>
-          <br>
-          <a href="/notes/edit/{{ note.slug }}">Edit</a> | <a href="/notes/delete/{{ note.slug }}">Delete</a>
-        </p>
+        {% for note in notes %}
 
-      {% endfor %}
+          <p>
+            <a href="/notes/{{ note.slug }}">{{ note.title }}</a>
+            <br>
+            <a href="/notes/edit/{{ note.slug }}">Edit</a> | <a href="/notes/delete/{{ note.slug }}">Delete</a>
+          </p>
+
+        {% endfor %}
+
+      {% else %}
+        <p class="error">You haven't aded any notes yet. Add one <a href="/notes/new">here</a>.</p>
+      {% endif %}
       
     </div>
 
