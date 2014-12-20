@@ -21,16 +21,22 @@ var noteSchema = ({
     required: true
   },
   notebook: {
-    type: String
+    title: {
+      type: String,
+      required: true
+    },
+    slug: {
+      type: String,
+      required: true
+    }
+  },
+  secret: {
+    type: Boolean
   },
   createdAt: {
     type: Date,
     default: Date.now
   }
 });
-
-/*noteSchema.methods.generateSlug = function(title) {
-  return title.toString().toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '').replace(/\-\-+/g, '-').replace(/^-+/, '').replace(/-+$/, '');
-}*/
 
 module.exports = mongoose.model('Note', noteSchema);
