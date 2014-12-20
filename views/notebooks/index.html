@@ -15,7 +15,7 @@
       {% if notes.length > 0 %}
 
         {% for note in notes %}
-          <p><a href="/notebooks/{{ note.notebook }}">{{ note.notebook }}</a></p>
+          <p><a href="/notebooks/{{ note.notebook.slug }}">{{ note.title }}</a></p>
         {% endfor %}
 
       {% else %}
