@@ -45,11 +45,14 @@ form button {
 }
 
 .code {
-  background: #efefef;
-  border-radius: 5px;
+  background: rgb(45, 45, 45);
+  border: .2rem solid rgb(0, 220, 125);
+  border-radius: .5rem;
+  color: rgb(0, 220, 125);
   font-family: 'Monaco';
-  padding: 0 0 20px 20px;
+  padding: 2rem;
   white-space: pre;
+  font-size: 1.4rem;
 }
 
 .note-title {
