@@ -1,6 +1,5 @@
 var Note = require('../models/Note.js');
 var User = require('../models/User.js');
-var utils = require('utils');
 
 module.exports = function(app, passport) {
 

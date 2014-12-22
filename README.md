@@ -4,7 +4,7 @@ My soon to be personal site in Node + Express
 
 TODO
 ----
-* Helper method to revere slugs
+* Minify thingsw
 * Markdown editor
 * Image uploads
 * Better error handling
