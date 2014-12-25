@@ -5,14 +5,14 @@ var utils = require('utils');
 module.exports = function(app, passport) {
 
 // GET list of notes
-  app.get('/notes', function(req, res) {
+  app.get('/', function(req, res) {
     Note.find(function(err, notes) {
       if (err) {
         throw err;
       }
       res.render('/notes/index.html', {
         title: 'Notes',
-        jumbotron: 'Notes',
+        jumbotron: 'Things I Need To Write Down',
         notes: notes,
         user: req.user,
         prettyDate: utils.prettyDate
