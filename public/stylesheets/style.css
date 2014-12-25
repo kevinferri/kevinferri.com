@@ -1,10 +1,9 @@
-
 body {
   font-family: 'Oxygen', sans-serif;
 }
 
 a {
-  color: rgb(41, 182, 246);
+  color: #22c7ca;
 }
 
 a:hover {
@@ -12,14 +11,28 @@ a:hover {
   text-decoration: none;
 }
 
-.jumbotron h1 {
+.jumbotron h1,
+.jumbotron h2 {
   font-family: 'Roboto Slab', serif;
   font-weight: 300;
 }
 
 .navbar {
-  background: #ffffff;
-  font-weight: 400;
+  background: rgb(53, 57, 66);
+  border: none;
+  border-bottom: .1rem solid #22c7ca;
+  border-radius: 0;
+  letter-spacing: .2rem;
+  font-size: 1.3rem;
+  font-weight: 300;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: #5cb85c;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+  color: #5cb85c;
 }
 
 .navbar .navbar-brand {
@@ -28,12 +41,14 @@ a:hover {
 }
 
 .jumbotron {
-  background: #ffffff;
+  background: rgb(53, 57, 66);
+  color: rgb(230, 230, 230);
   margin-top: -20px;
 }
 
 .container {
   font-size: 1.5rem;
+  letter-spacing: .06rem;
 }
 
 .error {
