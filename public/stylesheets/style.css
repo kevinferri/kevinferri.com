@@ -11,6 +11,12 @@ a:hover {
   text-decoration: none;
 }
 
+.jumbotron {
+  background: rgb(53, 57, 66);
+  color: #ffffff;
+  margin-top: -20px;
+}
+
 .jumbotron h1,
 .jumbotron h2 {
   font-family: 'Roboto Slab', serif;
@@ -28,22 +34,16 @@ a:hover {
 }
 
 .navbar-default .navbar-nav>li>a {
-  color: #5cb85c;
+  color: #e7ff72
 }
 
 .navbar-default .navbar-nav>li>a:hover {
-  color: #5cb85c;
+  color: #e7ff72;
 }
 
 .navbar .navbar-brand {
   font-weight: 400;
   letter-spacing: 2px;
-}
-
-.jumbotron {
-  background: rgb(53, 57, 66);
-  color: rgb(230, 230, 230);
-  margin-top: -20px;
 }
 
 .container {

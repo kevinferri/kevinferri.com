@@ -12,7 +12,7 @@ module.exports = function(app, passport) {
       }
       res.render('/notes/index.html', {
         title: 'Notes',
-        jumbotron: 'Things I Need To Write Down',
+        jumbotron: 'My Notes',
         notes: notes,
         user: req.user,
         prettyDate: utils.prettyDate
@@ -79,8 +79,7 @@ module.exports = function(app, passport) {
           console.log(err);
           throw err;
         }
-      }
-      else {
+      } else {
         Note.find(function(err, notes) {
           if (err) {
             throw err;
@@ -91,12 +90,50 @@ module.exports = function(app, passport) {
             notes: notes,
             user: req.user,
             prettyDate: utils.prettyDate,
-            successMessage: 'Your note has beeen added.'
+            successMessage: 'Your note has been added.'
           });
         });
       }
     });
   });
+
+  // DELETE individual note 
+  app.get('/notes/delete/:slug', isLoggedIn, function(req, res) {
+    Note.findOneAndRemove({ 'slug': req.params.slug }, function(err, note) {
+      if (err) {
+        throw err;
+      } else {
+        Note.find(function(err, notes) {
+          if (err) {
+            throw err;
+          }
+          res.render('/notes/index.html', {
+            title: 'Notes',
+            jumbotron: 'My Notes',
+            notes: notes,
+            user: req.user,
+            prettyDate: utils.prettyDate,
+            dangerMessage: 'Your note has been deleted.'
+          });
+        });
+      }
+    })
+  });
+
+  // GET edit note form
+  app.get('/notes/edit/:slug', isLoggedIn, function(req, res) {
+    Note.findOne({ 'slug': req.params.slug }, function(err, note) {
+      if (err) {
+        throw err;
+      }
+      res.render('/notes/edit.html', {
+        tite: 'Edit Note',
+        jumbotron: 'Editing ' + note.title,
+        note: note
+      });
+    });
+  });
+
 };
 
 // route middleware to make sure a user is logged in
