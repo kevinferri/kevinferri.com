@@ -1,7 +1,7 @@
 {% extends '/layouts/application.html' %}
 
   {% block nav %}
-    {% include "/layouts/nav.html" %}
+    {% include "/partials/nav.html" %}
   {% endblock %}
 
   {% block content %}
@@ -14,9 +14,7 @@
 
     <div class="col-sm-6 col-sm-offset-3">
 
-      {% if message.length > 0 %}
-        <div class="alert alert-danger">{{ message }}</div>
-      {% endif %}
+      {% include '/partials/message.html' %}
 
       <form action="/users/signup" method="post">
         <div class="form-group">

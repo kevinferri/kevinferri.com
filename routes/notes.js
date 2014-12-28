@@ -4,7 +4,7 @@ var utils = require('utils');
 
 module.exports = function(app, passport) {
 
-// GET list of notes
+  // GET list of notes
   app.get('/', function(req, res) {
     Note.find(function(err, notes) {
       if (err) {
@@ -37,14 +37,14 @@ module.exports = function(app, passport) {
           slug: req.params.slug
         });
       } else {
-      res.render('notes/show.html', {
-        title: note.title,
-        jumbotron: note.title,
-        note: note,
-        prettyDate: utils.prettyDate,
-        users: req.user
-      });
-    }
+        res.render('notes/show.html', {
+          title: note.title,
+          jumbotron: note.title,
+          note: note,
+          prettyDate: utils.prettyDate,
+          users: req.user
+        });
+      }
     }); 
   });
 
@@ -98,7 +98,7 @@ module.exports = function(app, passport) {
   });
 
   // DELETE individual note 
-  app.get('/notes/delete/:slug', isLoggedIn, function(req, res) {
+  app.get('/notes/delete/:slug', isLoggedIn, isOwner, function(req, res) {
     Note.findOneAndRemove({ 'slug': req.params.slug }, function(err, note) {
       if (err) {
         throw err;
@@ -121,13 +121,26 @@ module.exports = function(app, passport) {
   });
 
   // GET edit note form
-  app.get('/notes/edit/:slug', isLoggedIn, function(req, res) {
+  app.get('/notes/edit/:slug', isLoggedIn, isOwner, function(req, res) {
     Note.findOne({ 'slug': req.params.slug }, function(err, note) {
       if (err) {
         throw err;
       }
       res.render('/notes/edit.html', {
         tite: 'Edit Note',
+        jumbotron: 'Editing ' + note.title,
+        note: note
+      });
+    });
+  });
+
+  app.post('/notes/edit/:slug', isLoggedIn, isOwner, function(req, res) {
+    Note.findOne({ 'slug': req.params.slug }, function(err, note) {
+      if (err) {
+        throw err;
+      }
+      res.render('/notes/edit.html', {
+        title: 'Edit Note',
         jumbotron: 'Editing ' + note.title,
         note: note
       });
@@ -142,4 +155,15 @@ function isLoggedIn(req, res, next) {
     return next();
   }
   res.redirect('/errors/not-logged-in');
+}
+
+// route middleware to make sure users can only edit and delete their own notes
+function isOwner(req, res, next) {
+  Note.findOne({ 'slug': req.params.slug }, function(err, note) {
+    if (note.author._id == req.user._id) {
+      next();
+    } else {
+      res.redirect('/errors/not-authorized');
+    }
+  });
 }

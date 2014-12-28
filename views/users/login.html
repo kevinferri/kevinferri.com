@@ -1,7 +1,7 @@
 {% extends '/layouts/application.html' %}
 
   {% block nav %}
-    {% include "/layouts/nav.html" %}
+    {% include "/partials/nav.html" %}
   {% endblock %}
 
   {% block content %}
@@ -14,7 +14,7 @@
 
     <div class="col-sm-6 col-sm-offset-3">
 
-      {% include "/layouts/message.html" %}
+      {% include "/partials/message.html" %}
 
       <form action="/users/login" method="post">
         <div class="form-group">

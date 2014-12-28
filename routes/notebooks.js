@@ -7,6 +7,7 @@ module.exports = function(app) {
   app.get('/notebooks', function(req, res) {
     Note.find(function(err, notes) {
       res.render('notebooks/index.html', {
+        tite: 'Notebooks',
         jumbotron: 'Notebooks',
         notes: notes
       });
@@ -19,6 +20,7 @@ module.exports = function(app) {
     Note.find({'notebook.slug': req.params.slug}, function(err, notes) {
       var notebookTitle = notes[0].notebook.title;
       res.render('notebooks/show.html', {
+        title: 'Notes in ' + notebookTitle,
         jumbotron: 'Notes in ' + notebookTitle,
         notes: notes
       });
