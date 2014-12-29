@@ -19,8 +19,9 @@ a:hover {
 
 .jumbotron h1,
 .jumbotron h2 {
-  font-family: 'Roboto Slab', serif;
-  font-weight: 300;
+  font-family: 'Lato', sans-serif;
+  font-weight: 100;
+  letter-spacing: .15rem;
 }
 
 .navbar {

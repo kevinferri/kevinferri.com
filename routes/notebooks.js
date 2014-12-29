@@ -16,9 +16,12 @@ module.exports = function(app) {
 
   // GET list of notes in a notebook
   app.get('/notebooks/:slug', function(req, res) {
-    Note.find
     Note.find({'notebook.slug': req.params.slug}, function(err, notes) {
+      if (err) {
+        throw err;
+      }
       var notebookTitle = notes[0].notebook.title;
+      f
       res.render('notebooks/show.html', {
         title: 'Notes in ' + notebookTitle,
         jumbotron: 'Notes in ' + notebookTitle,
