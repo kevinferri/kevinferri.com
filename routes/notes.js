@@ -6,13 +6,13 @@ module.exports = function(app, passport) {
 
   // GET list of notes
   app.get('/', function(req, res) {
-    Note.find(function(err, notes) {
+    Note.find().sort({ createdAt: 'descending' }).exec(function(err, notes) {
       if (err) {
         throw err;
       }
       res.render('/notes/index.html', {
-        title: 'Notes',
-        jumbotron: 'My Notes',
+        title: 'Kevin Ferri | Notes',
+        jumbotron: 'Notes By Kevin',
         notes: notes,
         user: req.user,
         prettyDate: utils.prettyDate
@@ -31,21 +31,29 @@ module.exports = function(app, passport) {
 
   // GET individual note
   app.get('/notes/:slug', function(req, res) {
-    Note.findOne({'slug': req.params.slug}, function(err, note) {
-      if (!note) {
-        res.render('./errors/note-not-found.html', {
-          slug: req.params.slug
-        });
-      } else {
-        res.render('notes/show.html', {
-          title: note.title,
-          jumbotron: note.title,
-          note: note,
-          prettyDate: utils.prettyDate,
-          users: req.user
-        });
+    var moreNotes;
+    Note.find().where('slug').ne(req.params.slug).sort({ createdAt: 'descending' }).exec(function(err, notes) {
+      if (err) {
+        throw err;
       }
-    }); 
+      moreNotes = notes;
+      Note.findOne({'slug': req.params.slug}, function(err, note) {
+        if (!note) {
+          res.render('./errors/note-not-found.html', {
+            slug: req.params.slug
+          });
+        } else {
+          res.render('notes/show.html', {
+            title: note.title,
+            jumbotron: note.title,
+            note: note,
+            moreNotes: moreNotes,
+            prettyDate: utils.prettyDate,
+            users: req.user
+          });
+        }
+      }); 
+    });
   });
 
   // POST new note

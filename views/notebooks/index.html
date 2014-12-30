@@ -8,6 +8,7 @@
 
     <div class="jumbotron text-center">
       <h2>{{ jumbotron }}</h2>
+      <a href="/" class="btn btn-success" role="button">View All Notes</a>
     </div>
 
     <div class="container">
@@ -15,7 +16,9 @@
       {% if notes.length > 0 %}
 
         {% for note in notes %}
-          <p><a href="/notebooks/{{ note.notebook.slug }}">{{ note.title }}</a></p>
+          <article class="note">
+            <a class="note-title" href="/notebooks/{{ note.notebook.slug }}">{{ note.notebook.title }}</a>
+          </article>
         {% endfor %}
 
       {% else %}

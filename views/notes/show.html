@@ -19,6 +19,15 @@
 
         <div class="col-md-4">
           <h4>More notes</h4>
+          {% if moreNotes.length > 0 %}
+
+            {% for note in moreNotes %}
+              <article>
+                <a href="/notes/{{ note.slug }}">{{ note.title }}</a>
+              </article>
+            {% endfor %}
+
+          {% endif %}
         </div>
       </div>
 

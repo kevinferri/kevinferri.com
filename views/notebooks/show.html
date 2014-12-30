@@ -8,6 +8,9 @@
 
     <div class="jumbotron text-center">
       <h2>{{ jumbotron }}</h2>
+      <br>
+      <a href="/" class="btn btn-success" role="button">View All Notes</a>
+      <a href="/notebooks" class="btn btn-success" role="button">View All Notebooks</a>
     </div>
 
     <div class="container">
@@ -15,7 +18,9 @@
       {% if notes.length > 0 %}
 
         {% for note in notes %}
-          <p><a href="/notes/{{ note.slug }}">{{ note.title }}</a></p>
+          <article class="note">
+            <a href="/notes/{{ note.slug }}"><span class="note-title">{{ note.title }}</span></a> in <a href="/notebooks/{{ note.notebook.slug }}">{{ note.notebook.title }}</a> on {{ prettyDate(note.createdAt) }}
+          </article>
         {% endfor %}
 
       {% else %}
@@ -23,8 +28,6 @@
         <p class="error">No notes have been added yet.</p>
 
       {% endif %}
-
-      <hr>
       
     </div>
 

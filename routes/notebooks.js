@@ -21,11 +21,11 @@ module.exports = function(app) {
         throw err;
       }
       var notebookTitle = notes[0].notebook.title;
-      f
       res.render('notebooks/show.html', {
         title: 'Notes in ' + notebookTitle,
         jumbotron: 'Notes in ' + notebookTitle,
-        notes: notes
+        notes: notes,
+        prettyDate: utils.prettyDate
       });
     });
   });

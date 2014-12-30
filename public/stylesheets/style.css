@@ -56,15 +56,23 @@ a:hover {
   color: #ed4e6e;
 }
 
+.note {
+  background: rgb(245, 245, 245);
+  border: .1rem solid rgb(220, 220, 220);
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border-radius: .3rem;
+  bor
+}
+
 form button {
   width: 100%;
 }
 
-.note-title {
-  font-family: 'Roboto Slab', serif;
-  font-weight: 300;
-}
-
 .note-body {
   white-space: pre;
+}
+
+.note-title {
+  font-size: 2rem;
 }
