@@ -62,7 +62,10 @@ a:hover {
   margin-bottom: 2rem;
   padding: 1.5rem;
   border-radius: .3rem;
-  bor
+}
+
+.notebook {
+  color: #4cae4c;
 }
 
 form button {
@@ -74,5 +77,6 @@ form button {
 }
 
 .note-title {
-  font-size: 2rem;
+  font-weight: bold;
+  
 }

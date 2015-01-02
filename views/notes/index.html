@@ -8,8 +8,6 @@
 
     <div class="jumbotron text-center">
       <h2>{{ jumbotron }}</h2>
-      <br>
-      <a href="/notebooks" class="btn btn-success" role="button">View All Notebooks</a>
       {% if user %}
         <div class="btn-group">
           <a href="/notes/new" class="btn btn-success btn-lg" role="button">Add A Note &plus;</a>
@@ -26,7 +24,7 @@
         {% for note in notes %}
 
           <article class="note">
-            <a href="/notes/{{ note.slug }}"><span class="note-title">{{ note.title }}</span></a> in <a href="/notebooks/{{ note.notebook.slug }}">{{ note.notebook.title }}</a> on {{ prettyDate(note.createdAt) }}
+            <a href="/notes/{{ note.slug }}"><span class="note-title">{{ note.title }}</span></a> in <a class="notebook" href="/notebooks/{{ note.notebook.slug }}">{{ note.notebook.title }}</a> on {{ prettyDate(note.createdAt) }}
           </article>
 
         {% endfor %}
