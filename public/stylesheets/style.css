@@ -57,11 +57,7 @@ a:hover {
 }
 
 .note {
-  background: rgb(245, 245, 245);
-  border: .1rem solid rgb(220, 220, 220);
-  margin-bottom: 2rem;
-  padding: 1.5rem;
-  border-radius: .3rem;
+  margin-bottom: 1rem;
 }
 
 .notebook {
