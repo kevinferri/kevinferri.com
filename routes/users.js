@@ -1,5 +1,6 @@
 var Note = require('../models/Note.js');
 var User = require('../models/User.js');
+var utils = require('utils');
 
 module.exports = function(app, passport) {
 
@@ -43,7 +44,8 @@ module.exports = function(app, passport) {
         title: 'My Profile',
         jumbotron: 'My Profile',
         user: req.user,
-        notes: notes
+        notes: notes,
+        prettyDate: utils.prettyDate
       });
     });
   });
@@ -61,5 +63,8 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect('/errors/not-logged-in');
+  res.render('./statics/error.html', {
+    title: 'Not Authorized',
+    message: 'You are not authorized to view this page'
+  });
 }

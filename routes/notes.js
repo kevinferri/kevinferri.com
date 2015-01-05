@@ -12,7 +12,7 @@ module.exports = function(app, passport) {
       }
       res.render('/notes/index.html', {
         title: 'Kevin Ferri | Notes',
-        jumbotron: 'Notes By Kevin',
+        jumbotron: 'Recent Notes',
         notes: notes,
         user: req.user,
         prettyDate: utils.prettyDate
@@ -39,8 +39,9 @@ module.exports = function(app, passport) {
       moreNotes = notes;
       Note.findOne({'slug': req.params.slug}, function(err, note) {
         if (!note) {
-          res.render('./errors/note-not-found.html', {
-            slug: req.params.slug
+          res.render('./statics/error.html', {
+            title: 'Note not found',
+            message: 'Note not found'
           });
         } else {
           res.render('notes/show.html', {
@@ -92,7 +93,7 @@ module.exports = function(app, passport) {
           if (err) {
             throw err;
           }
-          res.render('/notes/index.html', {
+          res.render('/users/profile.html', {
             title: 'Notes',
             jumbotron: 'Notes',
             notes: notes,
@@ -137,21 +138,24 @@ module.exports = function(app, passport) {
       res.render('/notes/edit.html', {
         tite: 'Edit Note',
         jumbotron: 'Editing ' + note.title,
-        note: note
+        note: note,
+        slug: req.params.slug
       });
     });
   });
 
+  // POST edit note borm
   app.post('/notes/edit/:slug', isLoggedIn, isOwner, function(req, res) {
     Note.findOne({ 'slug': req.params.slug }, function(err, note) {
       if (err) {
         throw err;
       }
-      res.render('/notes/edit.html', {
-        title: 'Edit Note',
-        jumbotron: 'Editing ' + note.title,
-        note: note
-      });
+      note.title = req.body.title,
+      note.notebook.title = req.body.notebook;
+      note.notebook.slug = utils.toSlug(req.body.notebook);
+      note.body = req.body.body;
+      note.save();
+      res.redirect('/');
     });
   });
 
@@ -162,7 +166,10 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect('/errors/not-logged-in');
+  res.render('./statics/error.html', {
+    title: 'Must Be Logged In',
+    message: 'You must be logged in to view this page'
+  });
 }
 
 // route middleware to make sure users can only edit and delete their own notes
@@ -171,7 +178,10 @@ function isOwner(req, res, next) {
     if (note.author._id == req.user._id) {
       next();
     } else {
-      res.redirect('/errors/not-authorized');
+      res.render('./statics/error.html', {
+        title: 'Not Authorized',
+        message: 'You are not authorized to do that'
+      });
     }
   });
 }
