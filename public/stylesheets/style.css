@@ -79,8 +79,11 @@ form button {
   width: 100%;
 }
 
-.note-body pre {
-  white-space: pre;
+.note-body pre,
+.note-body pre.prettyprint {
+  font-family: monaco, Consolas, 'Lucida Console', monospace;
+  margin: 1rem 0;
+  padding: 1rem;
 }
 
 .note-title {

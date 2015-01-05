@@ -8,7 +8,6 @@ TODO
 * List notes only by admins
 * Markdown editor
 * Notebook icons
-* Syntax Highlighter: http://google-code-prettify.googlecode.com/svn/trunk/README.html
 * Image uploads
 * Better error handling
 * Pagination
