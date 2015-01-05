@@ -1,23 +1,19 @@
 {% extends '/layouts/application.html' %}
 
-  {% block nav %}
-    {% include "/partials/nav.html" %}
-  {% endblock %}
-
   {% block content %}
 
     <div class="container">
 
       <div class="row">
 
-        <div class="col-md-8">
+        <div class="col-sm-8">
           <h1>{{ note.title }}</h1>
-          <p><small>Written by {{ note.author.username }} in <a href="/notebooks/{{ note.notebook.slug }}">{{ note.notebook.title }}</a> on {{ prettyDate(note.createdAt) }} </small></p>
+          <p><small>Written by {{ note.author.username }} in <a class="notebook" href="/notebooks/{{ note.notebook.slug }}">{{ note.notebook.title }}</a> on {{ prettyDate(note.createdAt) }} </small></p>
           <hr>
-          <p class="note-body">{{ note.body | safe }}</p>
+          <section class="note-body">{{ note.body | safe }}</p>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-sm-4">
           <h4>More notes</h4>
           {% if moreNotes.length > 0 %}
 
@@ -29,6 +25,7 @@
 
           {% endif %}
         </div>
+
       </div>
 
     </div>

@@ -1,9 +1,5 @@
 {% extends '/layouts/application.html' %}
 
-  {% block nav %}
-    {% include "/partials/nav.html" %}
-  {% endblock %}
-
   {% block content %}
 
     <div class="jumbotron text-center">
@@ -16,7 +12,7 @@
 
         {% for note in notes %}
           <article class="note">
-            <a class="note-title" href="/notebooks/{{ note.notebook.slug }}">{{ note.notebook.title }}</a>
+            <a href="/notebooks/{{ note.notebook.slug }}"><h2 class="note-title">{{ note.notebook.title }}</h2></a>
           </article>
         {% endfor %}
 

@@ -1,9 +1,5 @@
 {% extends '/layouts/application.html' %}
 
-  {% block nav %}
-    {% include "/partials/nav.html" %}
-  {% endblock %}
-
   {% block content %}
 
     <div class="jumbotron text-center">
@@ -21,13 +17,7 @@
 
       {% if notes.length > 0 %}
 
-        {% for note in notes %}
-
-          <article class="note">
-            <a href="/notes/{{ note.slug }}"><span class="note-title">{{ note.title }}</span></a> in <a class="notebook" href="/notebooks/{{ note.notebook.slug }}">{{ note.notebook.title }}</a> on {{ prettyDate(note.createdAt) }}
-          </article>
-
-        {% endfor %}
+        {% include '/partials/list-notes.html' %}
 
       {% else %}
 

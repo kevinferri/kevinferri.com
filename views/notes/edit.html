@@ -1,9 +1,5 @@
 {% extends '/layouts/application.html' %}
 
-  {% block nav %}
-    {% include "/partials/nav.html" %}
-  {% endblock %}
-
   {% block content %}
 
     <div class="jumbotron text-center">
@@ -16,7 +12,7 @@
 
         {% include '/partials/message.html' %}
 
-        <form action="/notes/new" method="post">
+        <form action="/notes/edit/{{ slug }}" method="post">
           <div class="form-group">
             <label>Title</label>
             <input value="{{ note.title }}" type="text" class="form-control" name="title">
