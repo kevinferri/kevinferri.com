@@ -57,22 +57,40 @@ a:hover {
 }
 
 .note {
-  margin-bottom: 1rem;
+  margin-bottom: 4rem;
+}
+
+.note-date {
+  color: rgb(153, 153, 153);
+  margin-left: .5rem;
 }
 
 .notebook {
+  background: #f9f9f9;
+  border: .1rem solid #eeeeee;
+  border-radius: .3rem;
   color: #4cae4c;
+  display: inline-block;
+  margin-top: .5rem;
+  padding: .6rem;
 }
 
 form button {
   width: 100%;
 }
 
-.note-body {
+.note-body pre {
   white-space: pre;
 }
 
 .note-title {
-  font-weight: bold;
-  
+  font-weight: 300;
+}
+
+footer {
+  border-top: .1rem solid #22c7ca;
+  margin-top: 3rem;
+  font-family: 'Lato';
+  font-weight: 300;
+  padding: 2rem 0;
 }
