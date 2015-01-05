@@ -4,13 +4,11 @@ My soon to be personal site in Node + Express
 
 TODO
 ----
-* Fix notebook not found error
-* Finish updating/editing notes
-* One error page
-* Notebook icons
-* Private notes
-* Syntax Highlighter: http://google-code-prettify.googlecode.com/svn/trunk/README.html
+* List number of notes in notebook
+* List notes only by admins
 * Markdown editor
+* Notebook icons
+* Syntax Highlighter: http://google-code-prettify.googlecode.com/svn/trunk/README.html
 * Image uploads
 * Better error handling
 * Pagination
