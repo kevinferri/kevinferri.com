@@ -9,7 +9,8 @@ module.exports = function(app) {
       res.render('notebooks/index.html', {
         tite: 'Notebooks',
         jumbotron: 'Notebooks',
-        notes: notes
+        notes: notes,
+        count: notes.count
       });
     });
   });
@@ -20,13 +21,20 @@ module.exports = function(app) {
       if (err) {
         throw err;
       }
-      var notebookTitle = notes[0].notebook.title;
-      res.render('notebooks/show.html', {
-        title: 'Notes in ' + notebookTitle,
-        jumbotron: 'Notes in ' + notebookTitle,
-        notes: notes,
-        prettyDate: utils.prettyDate
-      });
+      if (notes[0]) {
+        var notebookTitle = notes[0].notebook.title;
+        res.render('notebooks/show.html', {
+          title: 'Notes in ' + notebookTitle,
+          jumbotron: 'Notes in ' + notebookTitle,
+          notes: notes,
+          prettyDate: utils.prettyDate
+        });
+      } else {
+        res.render('./statics/error.html', {
+          title: 'Notebook not found',
+          message: 'Notebook not found'
+        });
+      }
     });
   });
 
