@@ -11,11 +11,11 @@ module.exports = function(app, passport) {
         throw err;
       }
       res.render('/notes/index.html', {
-        title: 'Kevin Ferri | Notes',
+        title: 'Notes',
         jumbotron: 'Recent Notes',
         notes: notes,
         user: req.user,
-        prettyDate: utils.prettyDate
+        prettyDate: utils.prettyDate,
       });
     });
   }); 
@@ -136,7 +136,7 @@ module.exports = function(app, passport) {
         throw err;
       }
       res.render('/notes/edit.html', {
-        tite: 'Edit Note',
+        title: 'Edit Note',
         jumbotron: 'Editing ' + note.title,
         note: note,
         slug: req.params.slug
