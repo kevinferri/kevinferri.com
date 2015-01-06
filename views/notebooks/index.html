@@ -12,7 +12,7 @@
 
         {% for note in notes %}
           <article class="note">
-            <a href="/notebooks/{{ note.notebook.slug }}"><h2 class="note-title">{{ note.notebook.title }}</h2></a>
+            <h3 class="note-title"><a href="/notebooks/{{ note.notebook.slug }}">{{ note.notebook.title }}</a> <span class="count">({{ notesTable[note.notebook.slug] }})</span></h3>
           </article>
         {% endfor %}
 

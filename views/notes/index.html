@@ -4,21 +4,14 @@
 
     <div class="jumbotron text-center">
       <h2>{{ jumbotron }}</h2>
-      {% if user %}
-        <div class="btn-group">
-          <a href="/notes/new" class="btn btn-success btn-lg" role="button">Add A Note &plus;</a>
-        </div>
-      {% endif %}
+      <br>
     </div>
 
     <div class="container">
 
       {% include '/partials/message.html' %}
-
       {% if notes.length > 0 %}
-
         {% include '/partials/list-notes.html' %}
-
       {% else %}
 
         <p class="error">No notes have been added yet.</p>
