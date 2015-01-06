@@ -11,9 +11,7 @@ var passport     = require('passport');
 var flash        = require('connect-flash');
 var morgan       = require('morgan');
 var session      = require('express-session');
-
-var routes       = require('./routes/');
-//require('./routes/')(app);
+var fs           = require('fs');
 
 // Database 
 var configDB = require('./config/database.js');
@@ -47,42 +45,41 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
-// routes 
-require('./routes/index.js')(app, passport);
+// require all files in
+fs.readdirSync('./routes/').forEach(function(file) {
+  var name = file.substr(0, file.indexOf('.'));
+  require('./routes/' + name)(app, passport);
+});
 
-require('./routes/statics.js')(app);
-require('./routes/users.js')(app, passport);
-require('./routes/notes.js')(app, passport);
-require('./routes/notebooks.js')(app, passport);
-require('./routes/errors.js')(app, passport);
+
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
-        res.status(err.status || 500);
-        res.render('error.html', {
-            message: err.message,
-            error: err
-        });
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error.html', {
+      message: err.message,
+      error: err
     });
+  });
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
 });
 
 
