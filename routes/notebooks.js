@@ -1,16 +1,35 @@
 var Note = require('../models/Note.js');
 var utils = require('utils');
 
+/**
+ * @param {array} notes
+ * @returns {object} table
+ */
+function countNotebooks(notes) {
+  var table = Object.create(null);
+  for (var i = 0; i < notes.length; i++) {
+    if (typeof table[notes[i].notebook.slug] === 'undefined') {
+      table[notes[i].notebook.slug] = 1;
+    } else {
+      table[notes[i].notebook.slug] += 1;
+    }
+  }
+  return table;
+}
+
 module.exports = function(app) {
 
   // GET list of notebooks
   app.get('/notebooks', function(req, res) {
     Note.find(function(err, notes) {
+      if (err) {
+        throw err;
+      }
       res.render('notebooks/index.html', {
-        tite: 'Notebooks',
+        title: 'All Notebooks',
         jumbotron: 'Notebooks',
         notes: notes,
-        count: notes.count
+        notesTable: countNotebooks(notes)
       });
     });
   });
@@ -27,7 +46,8 @@ module.exports = function(app) {
           title: 'Notes in ' + notebookTitle,
           jumbotron: 'Notes in ' + notebookTitle,
           notes: notes,
-          prettyDate: utils.prettyDate
+          prettyDate: utils.prettyDate,
+          count: notes.length
         });
       } else {
         res.render('./statics/error.html', {
