@@ -30,7 +30,7 @@ module.exports = function(app, passport) {
   });
 
   // GET individual note
-  app.get('/notes/:slug', function(req, res) {
+  app.get('/notes/show/:slug', function(req, res) {
     var moreNotes;
     Note.find().where('slug').ne(req.params.slug).sort({ createdAt: 'descending' }).exec(function(err, notes) {
       if (err) {
