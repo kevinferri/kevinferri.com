@@ -8,11 +8,11 @@
 
     <div class="container">
 
-      {% if notes.length > 0 %}
+      {% if notebooks.length > 0 %}
 
-        {% for note in notes %}
+        {% for item in notebooks %}
           <article class="note">
-            <h3 class="note-title"><a href="/notebooks/{{ note.notebook.slug }}">{{ note.notebook.title }}</a> <span class="count">({{ notesTable[note.notebook.slug] }})</span></h3>
+            <h3 class="note-title"><a href="/notebooks/{{ item._id }}">{{ item.title }}</a> <span class="count">({{ item.count }})</span></h3>
           </article>
         {% endfor %}
 
