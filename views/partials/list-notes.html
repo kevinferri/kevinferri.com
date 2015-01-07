@@ -1,7 +1,7 @@
 {% if notes.length > 0 %}
   {% for note in notes %}
     <article class="note">
-      <h3 class="note-title"><a href="/notes/{{ note.slug }}">{{ note.title }}</a></h3>
+      <h3 class="note-title"><a href="/notes/show/{{ note.slug }}">{{ note.title }}</a></h3>
       <a href="/notebooks/{{ note.notebook.slug }}" class="notebook">{{ note.notebook.title }}</a>
       <time class="note-date">{{ prettyDate(note.createdAt) }}</time>
     </article>
