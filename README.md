@@ -4,7 +4,7 @@ My soon to be personal site in Node + Express
 
 TODO
 ----
-* GET /notebooks should return unique notebooks
+* Redirect to profile after creating, updating, and deleting notes
 * Remove bootstrap styles we don't need
 * List notes only by admins
 * Markdown editor
