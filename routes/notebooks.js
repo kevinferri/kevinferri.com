@@ -5,24 +5,12 @@ var utils = require('utils');
  * @param {array} notes
  * @returns {object} table
  */
-function countNotebooks(notes) {
-  var table = Object.create(null);
-  for (var i = 0; i < notes.length; i++) {
-    if (typeof table[notes[i].notebook.slug] === 'undefined') {
-      table[notes[i].notebook.slug] = 1;
-    } else {
-      table[notes[i].notebook.slug] += 1;
-    }
-  }
-  return table;
-}
 
 module.exports = function(app) {
 
   // GET list of notebooks
   app.get('/notebooks', function(req, res) {
     Note.aggregate([
-    // Group on the slug values and put other fields in an array
       { '$group': {
         '_id': '$notebook.slug',
         'count': { '$sum': 1 },
