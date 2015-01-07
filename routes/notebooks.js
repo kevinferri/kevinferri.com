@@ -21,15 +21,21 @@ module.exports = function(app) {
 
   // GET list of notebooks
   app.get('/notebooks', function(req, res) {
-    Note.find(function(err, notes) {
+    Note.aggregate([
+    // Group on the slug values and put other fields in an array
+      { '$group': {
+        '_id': '$notebook.slug',
+        'count': { '$sum': 1 },
+        'title': { '$first': '$notebook.title' }
+      }},
+    ],function(err, notebooks) {
       if (err) {
         throw err;
       }
       res.render('notebooks/index.html', {
         title: 'All Notebooks',
         jumbotron: 'Notebooks',
-        notes: notes,
-        notesTable: countNotebooks(notes)
+        notebooks: notebooks
       });
     });
   });
