@@ -1,11 +1,6 @@
 var Note = require('../models/Note.js');
 var utils = require('utils');
 
-/**
- * @param {array} notes
- * @returns {object} table
- */
-
 module.exports = function(app) {
 
   // GET list of notebooks
