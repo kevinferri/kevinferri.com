@@ -94,12 +94,12 @@ module.exports = function(app, passport) {
             throw err;
           }
           res.render('/users/profile.html', {
-            title: 'Notes',
-            jumbotron: 'Notes',
-            notes: notes,
+            title: 'My Profile',
+            jumbotron: 'My Profile',
             user: req.user,
+            notes: notes,
             prettyDate: utils.prettyDate,
-            successMessage: 'Your note has been added.'
+            successMessage: 'Your note has been added'
           });
         });
       }
@@ -116,13 +116,13 @@ module.exports = function(app, passport) {
           if (err) {
             throw err;
           }
-          res.render('/notes/index.html', {
-            title: 'Notes',
-            jumbotron: 'My Notes',
-            notes: notes,
+          res.render('/users/profile.html', {
+            title: 'My Profile',
+            jumbotron: 'My Profile',
             user: req.user,
+            notes: notes,
             prettyDate: utils.prettyDate,
-            dangerMessage: 'Your note has been deleted.'
+            dangerMessage: 'Your note has been deleted'
           });
         });
       }
@@ -155,7 +155,14 @@ module.exports = function(app, passport) {
       note.notebook.slug = utils.toSlug(req.body.notebook);
       note.body = req.body.body;
       note.save();
-      res.redirect('/');
+      res.render('/users/profile.html', {
+        title: 'My Profile',
+        jumbotron: 'My Profile',
+        user: req.user,
+        notes: notes,
+        prettyDate: utils.prettyDate,
+        successMessage: 'Your note has been updated'
+      });
     });
   });
 
@@ -184,4 +191,5 @@ function isOwner(req, res, next) {
       });
     }
   });
+
 }
