@@ -6,7 +6,7 @@ TODO
 ----
 * Remove bootstrap styles we don't need
 * Plain Text -> HTML
-* Pagination
+* Prev and next page
 * Notebook icons
 * Image uploads
 * Better error handling
