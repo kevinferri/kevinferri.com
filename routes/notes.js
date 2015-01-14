@@ -6,16 +6,17 @@ module.exports = function(app, passport) {
 
   // GET list of notes
   app.get('/', function(req, res) {
-    Note.find().sort({ createdAt: 'descending' }).exec(function(err, notes) {
+    Note.find(/*{ 'author.admin' : true }*/).sort({ createdAt: 'descending' }).exec(function(err, notes) {
       if (err) {
         throw err;
       }
       res.render('/notes/index.html', {
         title: 'Notes',
-        jumbotron: 'Recent Notes',
+        jumbotron: 'Recent Thoughts',
         notes: notes,
         user: req.user,
         prettyDate: utils.prettyDate,
+        getNotebookIcon: utils.getNotebookIcon
       });
     });
   }); 
@@ -32,7 +33,7 @@ module.exports = function(app, passport) {
   // GET individual note
   app.get('/notes/show/:slug', function(req, res) {
     var moreNotes;
-    Note.find().where('slug').ne(req.params.slug).sort({ createdAt: 'descending' }).exec(function(err, notes) {
+    Note.find(/*{ 'author.admin': true }*/).where('slug').ne(req.params.slug).sort({ createdAt: 'descending' }).exec(function(err, notes) {
       if (err) {
         throw err;
       }
@@ -50,7 +51,8 @@ module.exports = function(app, passport) {
             note: note,
             moreNotes: moreNotes,
             prettyDate: utils.prettyDate,
-            users: req.user
+            users: req.user,
+            getNotebookIcon: utils.getNotebookIcon
           });
         }
       }); 
@@ -144,7 +146,7 @@ module.exports = function(app, passport) {
     });
   });
 
-  // POST edit note borm
+  // POST edit note form
   app.post('/notes/edit/:slug', isLoggedIn, isOwner, function(req, res) {
     Note.findOne({ 'slug': req.params.slug }, function(err, note) {
       if (err) {

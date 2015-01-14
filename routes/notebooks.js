@@ -11,14 +11,15 @@ module.exports = function(app) {
         'count': { '$sum': 1 },
         'title': { '$first': '$notebook.title' }
       }},
-    ],function(err, notebooks) {
+    ], function(err, notebooks) {
       if (err) {
         throw err;
       }
       res.render('notebooks/index.html', {
         title: 'All Notebooks',
         jumbotron: 'Notebooks',
-        notebooks: notebooks
+        notebooks: notebooks,
+        getNotebookIcon: utils.getNotebookIcon
       });
     });
   });
@@ -34,9 +35,11 @@ module.exports = function(app) {
         res.render('notebooks/show.html', {
           title: 'Notes in ' + notebookTitle,
           jumbotron: 'Notes in ' + notebookTitle,
+          notebookTitle: notebookTitle,
           notes: notes,
           prettyDate: utils.prettyDate,
-          count: notes.length
+          count: notes.length,
+          getNotebookIcon: utils.getNotebookIcon
         });
       } else {
         res.render('./statics/error.html', {
