@@ -14,7 +14,8 @@ var noteSchema = ({
   },
   author: {
     _id: String,
-    username: String
+    username: String,
+    admin: Boolean
   },
   body: {
     type: String,
