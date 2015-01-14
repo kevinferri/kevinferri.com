@@ -10,9 +10,9 @@
 
       {% if notebooks.length > 0 %}
 
-        {% for item in notebooks %}
+        {% for notebook in notebooks %}
           <article class="note">
-            <h3 class="note-title"><a href="/notebooks/{{ item._id }}">{{ item.title }}</a> <span class="count">({{ item.count }})</span></h3>
+            <h3 class="note-title"><a href="/notebooks/{{ notebook._id }}">{{ notebook.title }} {{ getNotebookIcon(notebook.title) | safe }}</a> <span class="count">({{ notebook.count }})</span></h3>
           </article>
         {% endfor %}
 
