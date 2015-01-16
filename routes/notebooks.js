@@ -6,11 +6,17 @@ module.exports = function(app) {
   // GET list of notebooks
   app.get('/notebooks', function(req, res) {
     Note.aggregate([
-      { '$group': {
-        '_id': '$notebook.slug',
-        'count': { '$sum': 1 },
-        'title': { '$first': '$notebook.title' }
-      }},
+      { 
+        '$group': {
+          '_id': '$notebook.slug',
+          'count': { 
+            '$sum': 1 
+          },
+          'title': { 
+            '$first': '$notebook.title'
+          }
+        }
+      },
     ], function(err, notebooks) {
       if (err) {
         throw err;
