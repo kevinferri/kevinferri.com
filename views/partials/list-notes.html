@@ -1,11 +1,43 @@
-{% if notes.length > 0 %}
+{% if notes.length %}
+  {% set cycle = cycler('one', 'two', 'three') %}
   {% for note in notes %}
-    <article class="note">
-      <h3 class="note-title"><a href="/notes/show/{{ note.slug }}">{{ note.title }}</a></h3>
-      <a href="/notebooks/{{ note.notebook.slug }}" class="notebook">{{ note.notebook.title }} {{ getNotebookIcon(note.notebook.title) | safe }}</a>
-      <time class="note-date">{{ prettyDate(note.createdAt) }}</time>
-    </article>
+    
+    {% set curCycle = cycle.next() %}
+    
+    {% if curCycle == 'one' %}
+      <div class="row">
+        <div class="col-sm-4">
+          <article class="note">
+            <h3 class="note-title"><a href="/notes/show/{{ note.slug }}">{{ note.title }}</a></h3>
+            <a href="/notebooks/{{ note.notebook.slug }}" class="notebook">{{ note.notebook.title }} {{ getNotebookIcon(note.notebook.title) | safe }}</a>
+            <time class="note-date">{{ prettyDate(note.createdAt) }}</time>
+         </article>
+        </div>
+    {% elif curCycle == 'three' %}
+        <div class="col-sm-4">
+          <article class="note">
+            <h3 class="note-title"><a href="/notes/show/{{ note.slug }}">{{ note.title }}</a></h3>
+            <a href="/notebooks/{{ note.notebook.slug }}" class="notebook">{{ note.notebook.title }} {{ getNotebookIcon(note.notebook.title) | safe }}</a>
+            <time class="note-date">{{ prettyDate(note.createdAt) }}</time>
+          </article>
+        </div>
+      </div>
+    {% else %}
+      <div class="col-sm-4">
+        <article class="note">
+          <h3 class="note-title"><a href="/notes/show/{{ note.slug }}">{{ note.title }}</a></h3>
+          <a href="/notebooks/{{ note.notebook.slug }}" class="notebook">{{ note.notebook.title }} {{ getNotebookIcon(note.notebook.title) | safe }}</a>
+          <time class="note-date">{{ prettyDate(note.createdAt) }}</time>
+        </article>
+      </div>
+    {% endif %}
+    
+    {% if loop.last and curCycle != 'three' %}
+      </div>
+    {% endif %}
+
   {% endfor %}
+
 {% else %}
   <p class="error">No notes have been added yet.</p>
 {% endif %}
