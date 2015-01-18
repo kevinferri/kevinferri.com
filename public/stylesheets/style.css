@@ -1,4 +1,5 @@
 body {
+  background-color: #f3f3f3;
   font-family: 'Oxygen', sans-serif;
 }
 
@@ -68,7 +69,20 @@ a:hover {
 }
 
 .note {
+  background: #ffffff;
+  border-radius: .3rem;
+  box-shadow: 0 0 .1rem rgba(0, 0, 0, 0.3);
   margin-bottom: 4rem;
+  padding: 2rem 3rem;
+  transform: translate3d(0, 0, 0);
+  transition: .2s;
+}
+
+.note:hover {
+  text-decoration: none;
+  -moz-transform: scale(1.05) translateZ(0);
+  -webkit-transform: scale(1.05) translateZ(0);
+  transform: scale(1.05) translateZ(0);
 }
 
 .note-date {
@@ -101,6 +115,7 @@ form button {
 
 .note-title {
   font-weight: 300;
+  margin-top: 0;
 }
 
 .count {
