@@ -1,6 +1,7 @@
 var Note = require('../models/Note.js');
 var User = require('../models/User.js');
 var utils = require('utils');
+var auth = require('auth');
 
 module.exports = function(app, passport) {
 
@@ -22,7 +23,7 @@ module.exports = function(app, passport) {
   }); 
 
   // GET new notes form
-  app.get('/notes/new', isLoggedIn, function(req, res) {
+  app.get('/notes/new', auth.isLoggedIn, function(req, res) {
     res.render('/notes/new.html', {
       title: 'Add A Note',
       jumbotron: 'Add A Note',
@@ -60,7 +61,7 @@ module.exports = function(app, passport) {
   });
 
   // POST new note
-  app.post('/notes/new', function(req, res) {
+  app.post('/notes/new', auth.isLoggedIn, function(req, res) {
     var note = new Note({
       title: req.body.title,
       slug: utils.toSlug(req.body.title),
@@ -91,7 +92,7 @@ module.exports = function(app, passport) {
           throw err;
         }
       } else {
-        Note.find(function(err, notes) {
+        Note.find({ 'author._id': req.user._id }, function(err, notes) {
           if (err) {
             throw err;
           }
@@ -109,12 +110,12 @@ module.exports = function(app, passport) {
   });
 
   // DELETE individual note 
-  app.get('/notes/delete/:slug', isLoggedIn, isOwner, function(req, res) {
+  app.get('/notes/delete/:slug', auth.isLoggedIn, auth.isOwner, function(req, res) {
     Note.findOneAndRemove({ 'slug': req.params.slug }, function(err, note) {
       if (err) {
         throw err;
       } else {
-        Note.find(function(err, notes) {
+        Note.find({ 'author._id': req.user._id }, function(err, notes) {
           if (err) {
             throw err;
           }
@@ -132,7 +133,7 @@ module.exports = function(app, passport) {
   });
 
   // GET edit note form
-  app.get('/notes/edit/:slug', isLoggedIn, isOwner, function(req, res) {
+  app.get('/notes/edit/:slug', auth.isLoggedIn, auth.isOwner, function(req, res) {
     Note.findOne({ 'slug': req.params.slug }, function(err, note) {
       if (err) {
         throw err;
@@ -147,7 +148,7 @@ module.exports = function(app, passport) {
   });
 
   // POST edit note form
-  app.post('/notes/edit/:slug', isLoggedIn, isOwner, function(req, res) {
+  app.post('/notes/edit/:slug', auth.isLoggedIn, auth.isOwner, function(req, res) {
     Note.findOne({ 'slug': req.params.slug }, function(err, note) {
       if (err) {
         throw err;
@@ -157,41 +158,17 @@ module.exports = function(app, passport) {
       note.notebook.slug = utils.toSlug(req.body.notebook);
       note.body = req.body.body;
       note.save();
-      res.render('/users/profile.html', {
-        title: 'My Profile',
-        jumbotron: 'My Profile',
-        user: req.user,
-        notes: notes,
-        prettyDate: utils.prettyDate,
-        successMessage: 'Your note has been updated'
+      Note.find(/*{ 'author.admin' : true }*/).sort({ createdAt: 'descending' }).exec(function(err, notes) {
+        res.render('/users/profile.html', {
+          title: 'My Profile',
+          jumbotron: 'My Profile',
+          user: req.user,
+          notes: notes,
+          prettyDate: utils.prettyDate,
+          successMessage: 'Your note has been updated'
+        });
       });
     });
   });
 
 };
-
-// route middleware to make sure a user is logged in
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.render('./statics/error.html', {
-    title: 'Must Be Logged In',
-    message: 'You must be logged in to view this page'
-  });
-}
-
-// route middleware to make sure users can only edit and delete their own notes
-function isOwner(req, res, next) {
-  Note.findOne({ 'slug': req.params.slug }, function(err, note) {
-    if (note.author._id == req.user._id) {
-      next();
-    } else {
-      res.render('./statics/error.html', {
-        title: 'Not Authorized',
-        message: 'You are not authorized to do that'
-      });
-    }
-  });
-
-}

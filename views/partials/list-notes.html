@@ -1,4 +1,4 @@
-{% if notes.length %}
+{% if notes.length > 0 %}
   {% set cycle = cycler('one', 'two', 'three') %}
   {% for note in notes %}
     
@@ -6,36 +6,12 @@
     
     {% if curCycle == 'one' %}
       <div class="row">
-        <div class="col-sm-4">
-          <a href="/notes/show/{{ note.slug }}">
-            <article class="note">
-              <h3 class="note-title">{{ note.title }}</h3>
-              <span href="/notebooks/{{ note.notebook.slug }}" class="notebook">{{ note.notebook.title }} {{ getNotebookIcon(note.notebook.title) | safe }}</span>
-              <time class="note-date">{{ prettyDate(note.createdAt) }}</time>
-            </article>
-          </a>
-        </div>
+      {% include '/partials/note.html' %}
     {% elif curCycle == 'three' %}
-        <div class="col-sm-4">
-        <a href="/notes/show/{{ note.slug }}">
-          <article class="note">
-            <h3 class="note-title">{{ note.title }}</h3>
-            <span href="/notebooks/{{ note.notebook.slug }}" class="notebook">{{ note.notebook.title }} {{ getNotebookIcon(note.notebook.title) | safe }}</span>
-            <time class="note-date">{{ prettyDate(note.createdAt) }}</time>
-          </article>
-        </a>
-      </div>
+      {% include '/partials/note.html' %}
       </div>
     {% else %}
-      <div class="col-sm-4">
-        <a href="/notes/show/{{ note.slug }}">
-          <article class="note">
-            <h3 class="note-title">{{ note.title }}</h3>
-            <span href="/notebooks/{{ note.notebook.slug }}" class="notebook">{{ note.notebook.title }} {{ getNotebookIcon(note.notebook.title) | safe }}</span>
-            <time class="note-date">{{ prettyDate(note.createdAt) }}</time>
-          </article>
-        </a>
-      </div>
+      {% include '/partials/note.html' %}
     {% endif %}
     
     {% if loop.last and curCycle != 'three' %}

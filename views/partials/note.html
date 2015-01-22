@@ -1,0 +1,9 @@
+<div class="col-xs-6 col-sm-4">
+  <a href="/notes/show/{{ note.slug }}">
+    <article class="note">
+      <h3 class="note-title">{{ note.title }}</h3>
+      <span href="/notebooks/{{ note.notebook.slug }}" class="notebook">{{ note.notebook.title }} {{ getNotebookIcon(note.notebook.title) | safe }}</span>
+      <time class="note-date">{{ prettyDate(note.createdAt) }}</time>
+    </article>
+  </a>
+</div>
