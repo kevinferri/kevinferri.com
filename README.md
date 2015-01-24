@@ -6,6 +6,5 @@ TODO
 ----
 * Unlimited scroll on notes index
 * Remove bootstrap styles we don't need
-* Plain Text -> HTML
 * Image uploads
 * Better error handling
