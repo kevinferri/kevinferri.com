@@ -88,7 +88,7 @@ a:hover {
 }
 
 .notebook {
-  color: #4cae4c;
+  color: #27c667;
   display: inline-block;
   margin-top: .5rem;
 }
@@ -119,7 +119,7 @@ form button {
 }
 
 .count {
-  color: rgb(92, 184, 92);
+  color: #27c667;
   font-family: 'Lato';
 }
 
@@ -129,6 +129,10 @@ footer {
   font-family: 'Lato';
   font-weight: 300;
   padding: 2rem 0;
+}
+
+.btn-success {
+  background: #27c667;
 }
 
 @media (max-width: 992px) {
