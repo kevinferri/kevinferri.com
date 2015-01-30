@@ -104,7 +104,7 @@ form button {
 
 .note-body pre,
 .note-body pre.prettyprint {
-  font-family: Consolas, 'Lucida Console', monospace;
+  font-family: Monaco, 'Lucida Console', monospace;
   font-size: 1.4rem;
   margin: 1rem 0;
   padding: 1.4rem;
