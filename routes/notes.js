@@ -1,7 +1,7 @@
 var Note = require('../models/Note.js');
 var User = require('../models/User.js');
-var utils = require('utils');
-var auth = require('auth');
+var utils = require('../modules/utils.js');
+var permissions = require('../modules/permissions.js');
 
 module.exports = function(app, passport) {
 
@@ -23,7 +23,7 @@ module.exports = function(app, passport) {
   }); 
 
   // GET new notes form
-  app.get('/notes/new', auth.isLoggedIn, function(req, res) {
+  app.get('/notes/new', permissions.isLoggedIn, function(req, res) {
     res.render('/notes/new.html', {
       title: 'Add A Note',
       jumbotron: 'Add A Note',
@@ -61,7 +61,7 @@ module.exports = function(app, passport) {
   });
 
   // POST new note
-  app.post('/notes/new', auth.isLoggedIn, function(req, res) {
+  app.post('/notes/new', permissions.isLoggedIn, function(req, res) {
     var note = new Note({
       title: req.body.title,
       slug: utils.toSlug(req.body.title),
@@ -110,7 +110,7 @@ module.exports = function(app, passport) {
   });
 
   // DELETE individual note 
-  app.get('/notes/delete/:slug', auth.isLoggedIn, auth.isOwner, function(req, res) {
+  app.get('/notes/delete/:slug', permissions.isLoggedIn, permissions.isOwner, function(req, res) {
     Note.findOneAndRemove({ 'slug': req.params.slug }, function(err, note) {
       if (err) {
         throw err;
@@ -133,7 +133,7 @@ module.exports = function(app, passport) {
   });
 
   // GET edit note form
-  app.get('/notes/edit/:slug', auth.isLoggedIn, auth.isOwner, function(req, res) {
+  app.get('/notes/edit/:slug', permissions.isLoggedIn, permissions.isOwner, function(req, res) {
     Note.findOne({ 'slug': req.params.slug }, function(err, note) {
       if (err) {
         throw err;
@@ -148,7 +148,7 @@ module.exports = function(app, passport) {
   });
 
   // POST edit note form
-  app.post('/notes/edit/:slug', auth.isLoggedIn, auth.isOwner, function(req, res) {
+  app.post('/notes/edit/:slug', permissions.isLoggedIn, permissions.isOwner, function(req, res) {
     Note.findOne({ 'slug': req.params.slug }, function(err, note) {
       if (err) {
         throw err;

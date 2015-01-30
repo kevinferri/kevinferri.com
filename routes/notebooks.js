@@ -1,5 +1,5 @@
 var Note = require('../models/Note.js');
-var utils = require('utils');
+var utils = require('../modules/utils.js');
 
 module.exports = function(app) {
 
