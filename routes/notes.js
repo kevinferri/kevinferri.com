@@ -7,7 +7,7 @@ module.exports = function(app, passport) {
 
   // GET list of notes
   app.get('/', function(req, res) {
-    Note.find(/*{ 'author.admin' : true }*/).sort({ createdAt: 'descending' }).exec(function(err, notes) {
+    Note.find().sort({ createdAt: 'descending' }).exec(function(err, notes) {
       if (err) {
         throw err;
       }
@@ -23,7 +23,7 @@ module.exports = function(app, passport) {
   }); 
 
   // GET new notes form
-  app.get('/notes/new', permissions.isLoggedIn, function(req, res) {
+  app.get('/notes/new', permissions.isLoggedIn, permissions.isAdmin, function(req, res) {
     res.render('/notes/new.html', {
       title: 'Add A Note',
       jumbotron: 'Add A Note',
@@ -34,7 +34,7 @@ module.exports = function(app, passport) {
   // GET individual note
   app.get('/notes/show/:slug', function(req, res) {
     var moreNotes;
-    Note.find(/*{ 'author.admin': true }*/).where('slug').ne(req.params.slug).sort({ createdAt: 'descending' }).exec(function(err, notes) {
+    Note.find().where('slug').ne(req.params.slug).sort({ createdAt: 'descending' }).exec(function(err, notes) {
       if (err) {
         throw err;
       }
@@ -61,7 +61,7 @@ module.exports = function(app, passport) {
   });
 
   // POST new note
-  app.post('/notes/new', permissions.isLoggedIn, function(req, res) {
+  app.post('/notes/new', permissions.isLoggedIn, permissions.isAdmin, function(req, res) {
     var note = new Note({
       title: req.body.title,
       slug: utils.toSlug(req.body.title),
@@ -158,7 +158,7 @@ module.exports = function(app, passport) {
       note.notebook.slug = utils.toSlug(req.body.notebook);
       note.body = req.body.body;
       note.save();
-      Note.find(/*{ 'author.admin' : true }*/).sort({ createdAt: 'descending' }).exec(function(err, notes) {
+      Note.find().sort({ createdAt: 'descending' }).exec(function(err, notes) {
         res.render('/users/profile.html', {
           title: 'My Profile',
           jumbotron: 'My Profile',

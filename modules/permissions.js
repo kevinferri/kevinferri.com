@@ -1,3 +1,4 @@
+var User = require('../models/User.js');
 var Note = require('../models/Note.js');
 
 // Make sure user is logged in
@@ -16,6 +17,20 @@ exports.isOwner = function(req, res, next) {
   Note.findOne({ 'slug': req.params.slug }, function(err, note) {
     if (note.author._id == req.user._id) {
       next();
+    } else {
+      res.render('./statics/error.html', {
+        title: 'Not Authorized',
+        message: 'You are not authorized to do that'
+      });
+    }
+  });
+}
+
+// Make sure user is an admit
+exports.isAdmin = function(req, res, next) {
+  User.findOne({ '_id': req.user._id }, function(err, user) {
+    if (user.admin == true) {
+      return next();
     } else {
       res.render('./statics/error.html', {
         title: 'Not Authorized',
