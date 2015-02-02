@@ -18,8 +18,8 @@
         <hr>
 
         {% for note in notes %}
-          <article class="note">
-            <h3 class="note-title"><a href="/notes/{{ note.slug }}">{{ note.title }}</a></h3>
+          <article>
+            <h3><a href="/notes/show/{{ note.slug }}">{{ note.title }}</a></h3>
             <a href="/notebooks/{{ note.notebook.slug }}" class="notebook">{{ note.notebook.title }}</a>
             <time class="note-date">{{ prettyDate(note.createdAt) }}</time>
             <a href="/notes/edit/{{ note.slug }}">Edit</a> | <a href="/notes/delete/{{ note.slug }}">Delete</a>

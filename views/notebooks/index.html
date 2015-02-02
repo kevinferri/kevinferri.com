@@ -11,9 +11,11 @@
       {% if notebooks.length > 0 %}
 
         {% for notebook in notebooks %}
-          <article class="note">
-            <h3 class="note-title"><a href="/notebooks/{{ notebook._id }}">{{ notebook.title }} {{ getNotebookIcon(notebook.title) | safe }}</a> <span class="count">({{ notebook.count }})</span></h3>
-          </article>
+          <a href="/notebooks/{{ notebook._id }}">
+            <article class="note">
+              <h3 class="note-title">{{ notebook.title }} {{ getNotebookIcon(notebook.title) | safe }}</h3>
+            </article>
+          </a>
         {% endfor %}
 
       {% else %}

@@ -29,7 +29,7 @@ exports.isOwner = function(req, res, next) {
 // Make sure user is an admit
 exports.isAdmin = function(req, res, next) {
   User.findOne({ '_id': req.user._id }, function(err, user) {
-    if (user.admin == true) {
+    if (user.admin) {
       return next();
     } else {
       res.render('./statics/error.html', {

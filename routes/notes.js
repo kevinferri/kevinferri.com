@@ -88,7 +88,6 @@ module.exports = function(app, passport) {
             dangerMessage: 'There is already a note with that title.'
           });
         } else {
-          console.log(err);
           throw err;
         }
       } else {

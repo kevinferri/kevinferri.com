@@ -1,0 +1,22 @@
+<div class="col-sm-4">
+  <a href="/notebooks/{{ notebook.slug }}">
+    <article class="note">
+      <h3 class="note-title">{{ notebook.title }}</h3>
+      <span href="/notebooks/{{ note.notebook.slug }}" class="notebook">{{ note.notebook.title }} {{ getNotebookIcon(note.notebook.title) | safe }}</span>
+      <time class="note-date">{{ prettyDate(note.createdAt) }}</time>
+    </article>
+  </a>
+</div>
+
+{% if notebooks.length > 0 %}
+  {% for notebook in notebooks %}
+    <a href="/notebooks/{{ notebook._id }}">
+      <article class="note">
+        <h3 class="note-title">{{ notebook.title }} {{ getNotebookIcon(notebook.title) | safe }}</h3>
+      </article>
+    </a>
+  {% endfor %}
+
+{% else %}
+  <p class="error">No notes have been added yet.</p>
+{% endif %}

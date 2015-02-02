@@ -12,6 +12,7 @@ var flash        = require('connect-flash');
 var morgan       = require('morgan');
 var session      = require('express-session');
 var fs           = require('fs');
+var passportInfo = require('./config/passport-info.js')
 
 // Database 
 var configDB = require('./config/database.js');
@@ -40,7 +41,7 @@ app.use(morgan('dev')); // log every request to the console
 app.use(express.static(path.join(__dirname, 'public')));
 
 // required for passport
-app.use(session({ secret: 'ilovecookies' })); // session secret
+app.use(session({ secret: passportInfo.sessionSecret })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
@@ -50,8 +51,6 @@ fs.readdirSync('./routes/').forEach(function(file) {
   var name = file.substr(0, file.indexOf('.'));
   require('./routes/' + name)(app, passport);
 });
-
-
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

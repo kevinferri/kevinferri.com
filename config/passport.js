@@ -12,8 +12,7 @@ module.exports = function(passport) {
     });
   });
 
-
-  // SIGNUP STRATEGY
+  // Sign up strategy
   passport.use('local-signup', new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password',
@@ -44,14 +43,14 @@ module.exports = function(passport) {
     });
   }));
 
-  // LOGIN STRATEGY
+  // Login Strategy
   passport.use('local-login', new LocalStrategy({
-    usernameField : 'username',
-    passwordField : 'password',
+    usernameField: 'username',
+    passwordField: 'password',
     passReqToCallback : true
   },
   function(req, username, password, done) {
-    User.findOne({ 'local.username' :  username }, function(err, user) {
+    User.findOne({ 'local.username':  username }, function(err, user) {
       if (err) {
         return done(err);
       }
