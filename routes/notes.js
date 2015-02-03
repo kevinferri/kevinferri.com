@@ -34,7 +34,7 @@ module.exports = function(app, passport) {
   // GET individual note
   app.get('/notes/show/:slug', function(req, res) {
     var moreNotes;
-    Note.find().where('slug').ne(req.params.slug).sort({ createdAt: 'descending' }).exec(function(err, notes) {
+    Note.find().where('slug').ne(req.params.slug).sort({ createdAt: 'descending' }).limit(40).exec(function(err, notes) {
       if (err) {
         throw err;
       }
@@ -157,7 +157,7 @@ module.exports = function(app, passport) {
       note.notebook.slug = utils.toSlug(req.body.notebook);
       note.body = req.body.body;
       note.save();
-      Note.find().sort({ createdAt: 'descending' }).exec(function(err, notes) {
+      Note.find().sort({ createdAt: 'descending' }).limit(30).exec(function(err, notes) {
         res.render('/users/profile.html', {
           title: 'My Profile',
           jumbotron: 'My Profile',
