@@ -36,7 +36,7 @@ module.exports = function(app, passport) {
 
   // GET profile page
   app.get('/users/profile', isLoggedIn, function(req, res) {
-    Note.find({'author._id': req.user._id}, function(err, notes) {
+    Note.findOne({'author._id': req.user._id}, function(err, notes) {
       if (err) {
         throw err;
       }
