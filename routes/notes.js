@@ -7,7 +7,7 @@ module.exports = function(app, passport) {
 
   // GET list of notes
   app.get('/', function(req, res) {
-    Note.find().sort({ createdAt: 'descending' }).exec(function(err, notes) {
+    Note.find().sort({ createdAt: 'descending' }).limit(30).exec(function(err, notes) {
       if (err) {
         throw err;
       }
