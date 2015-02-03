@@ -16,7 +16,7 @@ exports.isLoggedIn = function(req, res, next) {
 exports.isOwner = function(req, res, next) {
   Note.findOne({ 'slug': req.params.slug }, function(err, note) {
     if (note.author._id == req.user._id) {
-      next();
+      return next();
     } else {
       res.render('./statics/error.html', {
         title: 'Not Authorized',
