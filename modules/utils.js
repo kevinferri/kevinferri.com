@@ -26,10 +26,10 @@ exports.uniqueArray = function(arr, cb) {
 
 exports.getNotebookIcon = function(notebook) {
   var dict = {
-    'Programming' : '<i class="fa fa-gears fa-lg"></i>',
-    'Miscellaneous' : '<i class="fa fa-pencil"></i>',
-    'Music' : '<i class="fa fa-headphones"></i>',
-    'Sports' : '<i class="fa fa-futbol-o"></i>'
+    'Programming': '<i class="fa fa-gears fa-lg"></i>',
+    'Miscellaneous': '<i class="fa fa-pencil"></i>',
+    'Music': '<i class="fa fa-headphones"></i>',
+    'Sports': '<i class="fa fa-futbol-o"></i>'
   };
   return dict[notebook];
 }
