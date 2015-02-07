@@ -69,7 +69,7 @@ module.exports = function(app, passport) {
         title: req.body.notebook,
         slug: utils.toSlug(req.body.notebook)
       },
-      body: req.body.body,
+      body: utils.toHtml(req.body.body),
       author: {
         _id: req.user._id,
         username: req.user.local.username,

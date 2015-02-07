@@ -1,6 +1,7 @@
-var Note = require('../models/Note.js');
-var User = require('../models/User.js');
-var utils = require('../modules/utils.js');
+var Note        = require('../models/Note.js');
+var User        = require('../models/User.js');
+var utils       = require('../modules/utils.js');
+var permissions = require('../modules/permissions.js');
 
 module.exports = function(app, passport) {
 
@@ -35,8 +36,8 @@ module.exports = function(app, passport) {
   }));
 
   // GET profile page
-  app.get('/users/profile', isLoggedIn, function(req, res) {
-    Note.findOne({'author._id': req.user._id}, function(err, notes) {
+  app.get('/users/profile', permissions.isLoggedIn, function(req, res) {
+    Note.find({'author._id': req.user._id}, function(err, notes) {
       if (err) {
         throw err;
       }
@@ -57,14 +58,3 @@ module.exports = function(app, passport) {
   });
 
 };
-
-// route middleware to make sure a user is logged in
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.render('./statics/error.html', {
-    title: 'Not Authorized',
-    message: 'You are not authorized to view this page'
-  });
-}
