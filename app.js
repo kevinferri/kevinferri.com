@@ -14,9 +14,12 @@ var session      = require('express-session');
 var fs           = require('fs');
 var passportInfo = require('./config/passport-info.js')
 
+// Set default environment to dev if not specified otherwise
+var env = process.env.NODE_ENV || 'development';
+
 // Database 
 var configDB = require('./config/database.js');
-mongoose.connect(configDB.url);
+mongoose.connect(configDB[env]);
 
 var app = express();
 
@@ -60,8 +63,7 @@ app.use(function(req, res, next) {
 });
 
 // development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
+if (env === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error.html', {
@@ -72,7 +74,6 @@ if (app.get('env') === 'development') {
 }
 
 // production error handler
-// no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error.html', {
