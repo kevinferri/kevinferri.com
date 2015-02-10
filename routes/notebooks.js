@@ -25,6 +25,7 @@ module.exports = function(app) {
         title: 'All Notebooks',
         jumbotron: 'Notebooks',
         notebooks: notebooks,
+        count: notebooks.count,
         getNotebookIcon: utils.getNotebookIcon
       });
     });
