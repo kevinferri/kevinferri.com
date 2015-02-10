@@ -17,7 +17,6 @@ exports.toSlug = function(text) {
 
 /**
  * Converts a javascript date object into a readable date string
- *
  * @param {date} d
  * @returns {string}
  */
@@ -28,7 +27,6 @@ exports.prettyDate = function(d) {
 
 /**
  * Removes duplicate items in an array
- *
  * @param {array} arr
  */
 exports.uniqueArray = function(arr) {
@@ -45,13 +43,12 @@ exports.uniqueArray = function(arr) {
 
 /**
  * Looks up the notebook and returns the corresponding logo for that notebook
- *
  * @param {string} notebook
  * @returns {string}
  */
 exports.getNotebookIcon = function(notebook) {
   var dict = {
-    'Programming': '<i class="fa fa-gears fa-lg"></i>',
+    'Programming': '<i class="fa fa-gears"></i>',
     'Miscellaneous': '<i class="fa fa-pencil"></i>',
     'Music': '<i class="fa fa-headphones"></i>',
     'Sports': '<i class="fa fa-futbol-o"></i>'
@@ -61,7 +58,6 @@ exports.getNotebookIcon = function(notebook) {
 
 /**
  * Converts plain text to html
- *
  * @param {string} text
  * @returns {string}
  */
