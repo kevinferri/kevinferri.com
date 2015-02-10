@@ -3,7 +3,7 @@
   {% block content %}
 
     <div class="jumbotron text-center">
-      <h2>{{ jumbotron }}</h2>
+      <h2>{{ jumbotron }} </h2>
     </div>
 
     <div class="container">
@@ -13,7 +13,7 @@
         {% for notebook in notebooks %}
           <a href="/notebooks/{{ notebook._id }}">
             <article class="note">
-              <h3 class="note-title">{{ notebook.title }} {{ getNotebookIcon(notebook.title) | safe }}</h3>
+              <h3 class="note-title">{{ notebook.title }} {{ getNotebookIcon(notebook.title) | safe }} <span class="count">({{ notebook.count }})</span></h3>
             </article>
           </a>
         {% endfor %}

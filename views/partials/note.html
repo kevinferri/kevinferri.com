@@ -1,5 +1,5 @@
 <div class="col-sm-4">
-  <a href="/notes/show/{{ note.slug }}">
+  <a href="/notes/{{ note.slug }}">
     <article class="note">
       <h3 class="note-title">{{ note.title }}</h3>
       <span href="/notebooks/{{ note.notebook.slug }}" class="notebook">{{ note.notebook.title }} {{ getNotebookIcon(note.notebook.title) | safe }}</span>
