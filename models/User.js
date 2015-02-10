@@ -21,15 +21,22 @@ var userSchema = mongoose.Schema({
   }
 });
 
-// Generates a hash
+/**
+ * Generates a hash
+ * @param {string} password
+ * @returns {string}
+ */
 userSchema.methods.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
-// Checks if password is valid
+/**
+ * Checks if password is valid
+ * @param {string} password
+ * @returns {boolean}
+ */
 userSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.local.password);
 };
 
-// Creates the model for users and expose it to our app
 module.exports = mongoose.model('User', userSchema);
