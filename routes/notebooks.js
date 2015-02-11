@@ -9,12 +9,8 @@ module.exports = function(app) {
       { 
         '$group': {
           '_id': '$notebook.slug',
-          'count': { 
-            '$sum': 1 
-          },
-          'title': { 
-            '$first': '$notebook.title'
-          }
+          'count': { '$sum': 1 },
+          'title': { '$first': '$notebook.title' }
         }
       },
     ], function(err, notebooks) {
