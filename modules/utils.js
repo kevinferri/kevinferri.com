@@ -1,6 +1,5 @@
 /**
  * Converts any string to a slug (This is the slug => this-is-the-slug)
- *
  * @param {string} text
  * @returns {string}
  */
