@@ -40,7 +40,6 @@ exports.isOwner = function(req, res, next) {
 
 /**
 * Middleware to make sure user has 'admin': true
-*
 * @param {{}} req
 * @param {{}} res
 * @param {function} next
