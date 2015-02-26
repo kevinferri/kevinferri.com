@@ -1,6 +1,5 @@
 node_modules
 data
-config/database.js
 .DS_Store
 npm-debug.log
 config/passport-info.js

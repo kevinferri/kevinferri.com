@@ -12,13 +12,13 @@ var flash        = require('connect-flash');
 var morgan       = require('morgan');
 var session      = require('express-session');
 var fs           = require('fs');
-var passportInfo = require('./config/passport-info.js')
+var passportInfo = require('./config/passport-info.js');
+var configDB     = require('./config/database.js');
 
 // Set default environment to dev if not specified otherwise
 var env = process.env.NODE_ENV || 'development';
 
 // Database 
-var configDB = require('./config/database.js');
 mongoose.connect(configDB[env]);
 
 var app = express();
