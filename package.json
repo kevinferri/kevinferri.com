@@ -4,7 +4,7 @@
   "private": true,
   "repository": "https://github.com/kevinferri/kevinferri.com",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node app.js"
   },
   "engines": {
     "node": "0.10.x",

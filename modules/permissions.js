@@ -14,7 +14,7 @@ exports.isLoggedIn = function(req, res, next) {
   }
   res.render('./statics/error.html', {
     title: 'Must Be Logged In',
-    message: 'You must be logged in to view this page'
+    message: 'You must be logged in to view this page.'
   });
 }
 
@@ -32,7 +32,7 @@ exports.isOwner = function(req, res, next) {
     } else {
       res.render('./statics/error.html', {
         title: 'Not Authorized',
-        message: 'You are not authorized to do that'
+        message: 'You are not authorized to do that.'
       });
     }
   });
@@ -52,7 +52,7 @@ exports.isAdmin = function(req, res, next) {
     } else {
       res.render('./statics/error.html', {
         title: 'Not Authorized',
-        message: 'You are not authorized to do that'
+        message: 'You are not authorized to do that.'
       });
     }
   });
