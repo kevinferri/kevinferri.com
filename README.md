@@ -4,8 +4,7 @@ My soon to be personal site in Node + Express
 
 TODO
 ----
-* Set up mongodb for prod
+* Add authentication to mongodb
 * Unlimited scroll on notes index
-* Remove bootstrap styles we don't need
 * Image uploads
 * Better error handling
