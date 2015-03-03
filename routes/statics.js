@@ -9,4 +9,11 @@ module.exports = function(app) {
     });
   });
 
+  // get resume
+  app.get('/resume', function (req, res) {
+    res.render('/statics/resume.html', {
+      title: 'Resume'
+    });
+  });
+
 }
