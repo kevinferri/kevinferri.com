@@ -1,6 +1,6 @@
 body {
   background: #f3f3f3;
-  font-family: 'Oxygen', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 a {
@@ -23,7 +23,6 @@ a:hover {
 
 .jumbotron h1,
 .jumbotron h2 {
-  font-family: 'Lato', sans-serif;
   font-weight: 200;
   letter-spacing: .4rem;
 }
@@ -42,7 +41,6 @@ a:hover {
 .navbar .navbar-brand {
   color: #27c667;
   letter-spacing: .3rem;
-  font-family: 'Lato', sans-serif;
   font-weight: 300;
 }
 
@@ -56,7 +54,6 @@ a:hover {
 
 .navbar-default .navbar-nav>li>a {
   color: #27c667;
-  font-family: 'Lato', sans-serif;
 }
 
 .navbar-default .navbar-nav>li>a:hover {
@@ -104,8 +101,7 @@ form button {
   width: 100%;
 }
 
-.note-body pre,
-.note-body pre.prettyprint {
+pre.prettyprint.prettyprinted {
   background: rgb(247, 247, 247);
   font-family: Monaco, 'Consolas', 'Lucida Console', monospace;
   font-size: 1.2rem;
@@ -138,10 +134,14 @@ footer {
   background: #27c667;
 }
 
+.text-center img {
+  display: block;
+  margin: 0 auto 2rem auto;
+}
+
 @media (max-width: 992px) {
   .note-date {
     display: block;
     margin-left: 0;
   }
 }
-
