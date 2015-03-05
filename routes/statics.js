@@ -2,7 +2,7 @@ module.exports = function(app) {
 
   // GET homepage
   app.get('/about', function(req, res) {
-    res.render('/statics/home.html', {
+    res.render('/statics/about.html', {
       title: 'About',
       jumbotron: 'Hey, I&rsquo;m Kevin',
       user: req.user

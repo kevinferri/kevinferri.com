@@ -12,7 +12,7 @@ module.exports = function(app, passport) {
         throw err;
       }
       res.render('/notes/index.html', {
-        title: 'Notes',
+        title: 'Home',
         jumbotron: 'Recent Thoughts',
         notes: notes,
         user: req.user,
