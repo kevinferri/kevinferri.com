@@ -12,9 +12,9 @@ exports.isLoggedIn = function(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.render('./statics/error.html', {
-    title: 'Must Be Logged In',
-    message: 'You must be logged in to view this page.'
+  res.render('./users/login.html', {
+    title: 'Login',
+    dangerMessage: 'You must be logged in to view this page.'
   });
 }
 
@@ -27,19 +27,26 @@ exports.isLoggedIn = function(req, res, next) {
 */
 exports.isOwner = function(req, res, next) {
   Note.findOne({ 'slug': req.params.slug }, function(err, note) {
-    if (note.author._id == req.user._id) {
-      return next();
+    if (note) {
+      if (note.author._id == req.user._id) {
+        return next();
+      } else {
+        res.render('./statics/errors.html', {
+          title: 'Home',
+          message: 'You are not authorized to do that.'
+        });
+      }
     } else {
       res.render('./statics/error.html', {
-        title: 'Not Authorized',
-        message: 'You are not authorized to do that.'
+        title: 'Error',
+        message: 'Note not found'
       });
     }
   });
 }
 
 /**
-* Middleware to make sure user has 'admin': true
+* Middleware to make sure user is admin
 * @param {{}} req
 * @param {{}} res
 * @param {function} next
@@ -50,8 +57,8 @@ exports.isAdmin = function(req, res, next) {
     if (user.admin) {
       return next();
     } else {
-      res.render('./statics/error.html', {
-        title: 'Not Authorized',
+      res.render('./statics/errors.html', {
+        title: 'error',
         message: 'You are not authorized to do that.'
       });
     }
