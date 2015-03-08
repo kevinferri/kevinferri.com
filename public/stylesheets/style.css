@@ -1,13 +1,15 @@
 body {
   background: #f3f3f3;
   font-family: 'Lato', sans-serif;
+  font-weight: 400;
 }
 
 a {
   color: #22c7ca;
 }
 
-a:hover {
+a:hover,
+a:focus {
   color: #3e5050;
   opacity: .7;
   text-decoration: none;
@@ -137,6 +139,28 @@ footer {
 .text-center img {
   display: block;
   margin: 0 auto 2rem auto;
+}
+
+.resume .resume-download {
+  margin-left: .8rem;
+}
+
+.resume .resume-download small {
+  color: #22c7ca;
+}
+
+.resume h3 {
+  margin-bottom: 2rem;
+}
+
+.resume h4 {
+  border-bottom: .1rem solid rgb(119, 119, 119);
+  margin-bottom: 1rem;
+  padding-bottom: .5rem;
+}
+
+.resume section {
+  margin-bottom: 2.5rem;
 }
 
 @media (max-width: 992px) {
