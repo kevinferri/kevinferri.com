@@ -32,7 +32,7 @@ exports.isOwner = function(req, res, next) {
         return next();
       } else {
         res.render('./statics/errors.html', {
-          title: 'Home',
+          title: 'Not Authorized',
           message: 'You are not authorized to do that.'
         });
       }

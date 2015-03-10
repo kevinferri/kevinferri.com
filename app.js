@@ -50,6 +50,9 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
+// require routes
+var routes = require('./routes.js')(app, passport);
+
 // require all files in /routes
 fs.readdirSync('./routes/').forEach(function(file) {
   var name = file.substr(0, file.indexOf('.'));
