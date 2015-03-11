@@ -4,7 +4,6 @@ My personal site
 
 ## TODO
 
-* Split up routing and controllers (`/routes` -> `routes.js`, `/controllers`)
 * Markdown to HTML
 * Better organization of layouts (`/views/layouts/` -> `layout.js`)
 * Better error handling
