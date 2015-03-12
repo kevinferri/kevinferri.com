@@ -28,8 +28,8 @@ module.exports = function(app, passport) {
 
   // Notes
   app.get('/', notes.getNotes);
-  app.get('/notes/:slug', notes.getNote);
   app.get('/notes/new', permissions.isLoggedIn, permissions.isAdmin, notes.getNew);
+  app.get('/notes/:slug', notes.getNote);
   app.get('/notes/delete/:slug', permissions.isLoggedIn, permissions.isOwner, notes.getDelete);
   app.get('/notes/edit/:slug', permissions.isLoggedIn, permissions.isOwner, notes.getEdit);
   app.post('/notes/new', permissions.isLoggedIn, permissions.isAdmin, notes.postNew);
