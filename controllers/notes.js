@@ -89,7 +89,7 @@ exports.getEdit = function(req, res) {
     }
     res.render('/notes/edit.html', {
       title: 'Edit Note',
-      jumbotron: 'Editing <strong>' + note.title + '</strong>',
+      jumbotron: 'Editing ' + note.title,
       note: note,
       slug: req.params.slug
     });

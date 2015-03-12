@@ -53,12 +53,6 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 // require routes
 var routes = require('./routes.js')(app, passport);
 
-// require all files in /routes
-fs.readdirSync('./routes/').forEach(function(file) {
-  var name = file.substr(0, file.indexOf('.'));
-  require('./routes/' + name)(app, passport);
-});
-
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
