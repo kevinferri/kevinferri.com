@@ -36,7 +36,7 @@ module.exports = function(app, passport) {
   app.post('/notes/edit/:slug', permissions.isLoggedIn, permissions.isOwner, notes.postEdit);
 
   // Notebooks
-  app.get('/notesbooks', notebooks.getNotebooks);
+  app.get('/notebooks', notebooks.getNotebooks);
   app.get('/notebooks/:slug', notebooks.getNotebook)
 
 }
