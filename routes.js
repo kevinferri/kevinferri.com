@@ -37,6 +37,6 @@ module.exports = function(app, passport) {
 
   // Notebooks
   app.get('/notesbooks', notebooks.getNotebooks);
-  app.get('notebooks/:slug', notebooks.getNotebook)
+  app.get('/notebooks/:slug', notebooks.getNotebook)
 
 }
