@@ -25,7 +25,7 @@ exports.getNotebooks = function(req, res) {
 }
 
 exports.getNotebook = function(req, res) {
-  Note.find({'notebook.slug': req.params.slug}, function(err, notes) {
+  Note.find({ 'notebook.slug': req.params.slug }).sort({ createdAt: 'descending' }).exec(function(err, notes) {
     if (err) {
       throw err;
     }
