@@ -10,9 +10,7 @@ exports.about = function(req, res) {
 
 // GET resume page
 exports.resume = function(req, res) {
-  app.get('/resume', function (req, res) {
-    res.render('/statics/resume.html', {
-      title: 'Resume'
-    });
+  res.render('/statics/resume.html', {
+    title: 'Resume'  
   });
 }
