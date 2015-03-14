@@ -4,7 +4,6 @@ My personal site
 
 ## TODO
 
-* Update HTTP verbs
 * Markdown to HTML
 * Better error handling
 * `/notebooks` view should be sorted by most notes in a notebook

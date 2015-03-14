@@ -82,7 +82,6 @@ exports.getDelete = function(req, res) {
 }
 
 exports.getEdit = function(req, res) {
-  console.log('running');
   Note.findOne({ 'slug': req.params.slug }, function(err, note) {
     if (err) {
       throw err;

@@ -1,5 +1,6 @@
 // GET about page
 exports.about = function(req, res) {
+
   res.render('/statics/about.html', {
     title: 'About',
     jumbotron: 'Hey, I&rsquo;m Kevin',

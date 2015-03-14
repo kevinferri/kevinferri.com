@@ -19,7 +19,7 @@ var debug        = require('debug')('kevinferri.com');
 // Set default environment to dev if not specified otherwise
 var env = process.env.NODE_ENV || 'development';
 
-// Database 
+// Connect to db
 mongoose.connect(configDB[env]);
 
 var app = express();
@@ -87,6 +87,5 @@ var server = app.listen(app.get('port'), function() {
 });
 
 console.log('Server started on port ' + app.get('port'));
-
 
 module.exports = app;
