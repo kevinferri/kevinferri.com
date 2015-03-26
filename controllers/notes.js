@@ -1,6 +1,6 @@
-var Note = require('../models/Note.js');
-var User = require('../models/User.js');
-var utils = require('../modules/utils.js');
+var Note        = require('../models/Note.js');
+var User        = require('../models/User.js');
+var utils       = require('../modules/utils.js');
 var permissions = require('../modules/permissions.js');
 
 // GET notes index
@@ -113,6 +113,7 @@ exports.postNew = function(req, res) {
   note.save(function(err) {
     if (err) {
       if (err.code === 11000) {
+        console.log(err);
         res.render('/notes/new.html', {
           title: 'Add A Note',
           jumbotron: 'Add A Note',
@@ -153,15 +154,19 @@ exports.postEdit = function(req, res) {
     note.notebook.title = req.body.notebook;
     note.notebook.slug = utils.toSlug(req.body.notebook);
     note.body = req.body.body;
-    note.save();
-    Note.find().sort({ createdAt: 'descending' }).limit(30).exec(function(err, notes) {
-      res.render('/users/profile.html', {
-        title: 'My Profile',
-        jumbotron: 'My Profile',
-        user: req.user,
-        notes: notes,
-        prettyDate: utils.prettyDate,
-        successMessage: 'Your note has been updated'
+    note.save(function(err) {
+      if (err) {
+        throw err;
+      }
+      Note.find().sort({ createdAt: 'descending' }).limit(30).exec(function(err, notes) {
+        res.render('/users/profile.html', {
+          title: 'My Profile',
+          jumbotron: 'My Profile',
+          user: req.user,
+          notes: notes,
+          prettyDate: utils.prettyDate,
+          successMessage: 'Your note has been updated'
+        });
       });
     });
   });

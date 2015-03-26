@@ -1,4 +1,4 @@
-var Note = require('../models/Note.js');
+var Note  = require('../models/Note.js');
 var utils = require('../modules/utils.js');
 
 exports.getNotebooks = function(req, res) {
