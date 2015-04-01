@@ -8,6 +8,5 @@ My personal site
 * Better error handling
 * `/notebooks` view should be sorted by most notes in a notebook
 * Compress css
-* Favicon
 * Unlimited scroll on notes index
 * Image uploads
