@@ -2,12 +2,12 @@ var User = require('../models/User.js');
 var Note = require('../models/Note.js');
 
 /**
-* Middleware to make sure a user is logged in
-* @param {{}} req
-* @param {{}} res
-* @param {function} next
-* @returns {function}
-*/
+ * Middleware to make sure a user is logged in
+ * @param {{}} req
+ * @param {{}} res
+ * @param {function} next
+ * @returns {function}
+ */
 exports.isLoggedIn = function(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
@@ -19,11 +19,11 @@ exports.isLoggedIn = function(req, res, next) {
 }
 
 /**
-* Middleware to make sure user is creator of a note
-* @param {{}} req
-* @param {{}} res
-* @param {function} next
-* @returns {function}
+ * Middleware to make sure user is creator of a note
+ * @param {{}} req
+ * @param {{}} res
+ * @param {function} next
+ * @returns {function}
 */
 exports.isOwner = function(req, res, next) {
   Note.findOne({ 'slug': req.params.slug }, function(err, note) {
@@ -46,12 +46,12 @@ exports.isOwner = function(req, res, next) {
 }
 
 /**
-* Middleware to make sure user is admin
-* @param {{}} req
-* @param {{}} res
-* @param {function} next
-* @returns {function}
-*/
+ * Middleware to make sure user is admin
+ * @param {{}} req
+ * @param {{}} res
+ * @param {function} next
+ * @returns {function}
+ */
 exports.isAdmin = function(req, res, next) {
   User.findOne({ '_id': req.user._id }, function(err, user) {
     if (user.admin) {
