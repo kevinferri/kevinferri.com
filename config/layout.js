@@ -1,1 +1,4 @@
-// TODO: create object that will contain global or view specific assets, have view read from this to only include what it needs
+/*module.exports = {
+  'globals': [],
+  'notelayout': []
+}*/
