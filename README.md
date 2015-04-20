@@ -4,9 +4,9 @@ My personal site
 
 ## TODO
 
+* Add Gulp
 * Markdown to HTML
 * Better error handling
 * `/notebooks` view should be sorted by most notes in a notebook
-* Compress css
-* Unlimited scroll on notes index
 * Image uploads
+* Unlimited scroll on notes index
