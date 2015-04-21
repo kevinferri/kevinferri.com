@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "body-parser": "~1.0.0",
-    "cookie-parser": "~1.0.1",
+    "cookie-parser": "~1.0.0",
     "debug": "~0.7.4",
     "express": "~4.2.0",
     "mongo": "*",
@@ -22,15 +22,14 @@
     "morgan": "~1.0.0",
     "nunjucks": "*",
     "static-favicon": "~1.0.0",
-    "nodemon": "*",
-    "passport" : "~0.1.17",
-    "passport-local" : "~0.1.6",  
-    "connect-flash" : "~0.1.1",   
-    "bcrypt-nodejs" : "*",
-    "morgan": "~1.0.0",
-    "body-parser": "~1.0.0",
-    "cookie-parser": "~1.0.0",
+    "passport": "~0.1.17",
+    "passport-local": "~0.1.6",
+    "connect-flash": "~0.1.1",
+    "bcrypt-nodejs": "*",
     "method-override": "~1.0.0",
     "express-session": "~1.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11"
   }
 }
