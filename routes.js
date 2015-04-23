@@ -1,4 +1,4 @@
-var permissions = require('./modules/permissions.js');
+var permissions = require('./helpers/permissions.js');
 var statics = require('./controllers/statics.js');
 var users = require('./controllers/users.js');
 var notes = require('./controllers/notes.js');

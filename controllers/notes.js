@@ -1,7 +1,7 @@
 var Note        = require('../models/Note.js');
 var User        = require('../models/User.js');
-var utils       = require('../modules/utils.js');
-var permissions = require('../modules/permissions.js');
+var utils       = require('../helpers/utils.js');
+var permissions = require('../helpers/permissions.js');
 
 // GET notes index
 exports.getNotes = function(req, res) {

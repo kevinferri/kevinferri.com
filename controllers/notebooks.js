@@ -1,5 +1,5 @@
 var Note  = require('../models/Note.js');
-var utils = require('../modules/utils.js');
+var utils = require('../helpers/utils.js');
 
 exports.getNotebooks = function(req, res) {
   Note.aggregate([
