@@ -30,9 +30,6 @@ var noteSchema = mongoose.Schema({
       required: true
     }
   },
-  secret: {
-    type: Boolean
-  },
   createdAt: {
     type: Date,
     default: Date.now
