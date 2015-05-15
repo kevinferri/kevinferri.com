@@ -4,7 +4,6 @@ My personal site
 
 ## TODO
 
-* Add tools model and routes
 * Add Gulp
 * Add Bower
 * Markdown to HTML
