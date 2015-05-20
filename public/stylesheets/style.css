@@ -16,7 +16,7 @@ a:focus {
 }
 
 .jumbotron {
-  background-image: linear-gradient(120deg, #3e5050, #27c667);
+  background: #3e5050;
   color: #ffffff;
   margin-top: -20px;
   padding-bottom: 32px;
