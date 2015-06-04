@@ -8,4 +8,3 @@ My personal site
 * Better error handling
 * `/notebooks` view should be sorted by most notes in a notebook
 * Image uploads
-* Unlimited scroll on notes index
