@@ -6,12 +6,12 @@
     
     {% if curCycle == 'one' %}
       <div class="row">
-      {% include '/partials/note.html' %}
+      {% include '../partials/note.html' %}
     {% elif curCycle == 'three' %}
-      {% include '/partials/note.html' %}
+      {% include '../partials/note.html' %}
       </div>
     {% else %}
-      {% include '/partials/note.html' %}
+      {% include '../partials/note.html' %}
     {% endif %}
     
     {% if loop.last and curCycle != 'three' %}

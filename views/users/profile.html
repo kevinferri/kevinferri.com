@@ -1,4 +1,4 @@
-{% extends "/layouts/application.html" %}
+{% extends 'layout.html' %}
 
   {% block content %}
     <div class="text-center jumbotron">
@@ -10,7 +10,7 @@
 
     <div class="container">
 
-    {% include "partials/message.html" %}
+    {% include "../partials/message.html" %}
 
       {% if notes.length > 0 %}
 

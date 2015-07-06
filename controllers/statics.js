@@ -1,7 +1,7 @@
 // GET about page
 exports.about = function(req, res) {
 
-  res.render('/statics/about.html', {
+  res.render('statics/about.html', {
     title: 'About',
     jumbotron: 'Hey, I&rsquo;m Kevin',
     user: req.user
@@ -10,7 +10,7 @@ exports.about = function(req, res) {
 
 // GET resume page
 exports.resume = function(req, res) {
-  res.render('/statics/resume.html', {
+  res.render('statics/resume.html', {
     title: 'Resume'  
   });
 }

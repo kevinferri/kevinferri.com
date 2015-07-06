@@ -5,7 +5,7 @@ var permissions = require('../helpers/permissions.js');
 
 // GET login
 exports.getLogin = function(req, res) {
-  res.render('/users/login.html', {
+  res.render('users/login.html', {
     title: 'Login',
     dangerMessage: req.flash('loginMessage')
   });
@@ -13,7 +13,7 @@ exports.getLogin = function(req, res) {
 
 // GET signup
 exports.getSignup = function(req, res) {
-  res.render('/users/signup.html', {
+  res.render('users/signup.html', {
     title: 'Sign up',
     dangerMessage: req.flash('signupMessage')
   });
@@ -25,7 +25,7 @@ exports.getProfile = function(req, res) {
     if (err) {
       throw err;
     }
-    res.render('/users/profile.html', {
+    res.render('users/profile.html', {
       title: 'My Profile',
       jumbotron: 'My Profile',
       user: req.user,

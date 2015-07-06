@@ -1,4 +1,4 @@
-{% extends '/layouts/application.html' %}
+{% extends 'layout.html' %}
 
   {% block content %}
 
@@ -8,10 +8,10 @@
 
     <div class="container">
 
-      {% include '/partials/message.html' %}
+      {% include '../partials/message.html' %}
       
       {% if notes.length > 0 %}
-        {% include '/partials/list-notes.html' %}
+        {% include '../partials/list-notes.html' %}
       {% else %}
 
         <p class="error">No notes have been added yet.</p>

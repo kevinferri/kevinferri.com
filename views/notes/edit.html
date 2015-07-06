@@ -1,4 +1,4 @@
-{% extends '/layouts/application.html' %}
+{% extends 'layout.html' %}
 
   {% block content %}
 
@@ -10,7 +10,7 @@
 
       <div class="col-sm-6 col-sm-offset-3">
 
-        {% include '/partials/message.html' %}
+        {% include '../partials/message.html' %}
 
         <form action="/notes/edit/{{ slug }}" method="post">
           <div class="form-group">

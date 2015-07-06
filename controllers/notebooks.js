@@ -41,7 +41,7 @@ exports.getNotebook = function(req, res) {
         getNotebookIcon: utils.getNotebookIcon
       });
     } else {
-      res.render('./statics/error.html', {
+      res.render('statics/error.html', {
         title: 'Notebook not found',
         message: 'Notebook not found'
       });

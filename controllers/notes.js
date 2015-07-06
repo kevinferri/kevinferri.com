@@ -9,7 +9,7 @@ exports.getNotes = function(req, res) {
     if (err) {
       throw err;
     }
-    res.render('/notes/index.html', {
+    res.render('notes/index.html', {
       title: 'Home',
       jumbotron: 'Recent Thoughts',
       notes: notes,
@@ -30,7 +30,7 @@ exports.getNote = function(req, res) {
     moreNotes = notes;
     Note.findOne({'slug': req.params.slug}, function(err, note) {
       if (!note) {
-        res.render('./statics/error.html', {
+        res.render('statics/error.html', {
           title: 'Note not found',
           message: 'Note not found'
         });
@@ -51,7 +51,7 @@ exports.getNote = function(req, res) {
 
 // GET new note form
 exports.getNew = function(req, res) {
-  res.render('/notes/new.html', {
+  res.render('notes/new.html', {
     title: 'Add A Note',
     jumbotron: 'Add A Note',
     user: req.user
@@ -68,7 +68,7 @@ exports.getDelete = function(req, res) {
         if (err) {
           throw err;
         }
-        res.render('/users/profile.html', {
+        res.render('users/profile.html', {
           title: 'My Profile',
           jumbotron: 'My Profile',
           user: req.user,
@@ -86,7 +86,7 @@ exports.getEdit = function(req, res) {
     if (err) {
       throw err;
     }
-    res.render('/notes/edit.html', {
+    res.render('notes/edit.html', {
       title: 'Edit Note',
       jumbotron: 'Editing ' + note.title,
       note: note,
@@ -114,7 +114,7 @@ exports.postNew = function(req, res) {
     if (err) {
       if (err.code === 11000) {
         console.log(err);
-        res.render('/notes/new.html', {
+        res.render('notes/new.html', {
           title: 'Add A Note',
           jumbotron: 'Add A Note',
           user: req.user,
@@ -131,7 +131,7 @@ exports.postNew = function(req, res) {
         if (err) {
           throw err;
         }
-        res.render('/users/profile.html', {
+        res.render('users/profile.html', {
           title: 'My Profile',
           jumbotron: 'My Profile',
           user: req.user,
@@ -159,7 +159,7 @@ exports.postEdit = function(req, res) {
         throw err;
       }
       Note.find().sort({ createdAt: 'descending' }).limit(30).exec(function(err, notes) {
-        res.render('/users/profile.html', {
+        res.render('users/profile.html', {
           title: 'My Profile',
           jumbotron: 'My Profile',
           user: req.user,

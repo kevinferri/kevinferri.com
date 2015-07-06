@@ -12,7 +12,7 @@ exports.isLoggedIn = function(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.render('./users/login.html', {
+  res.render('users/login.html', {
     title: 'Login',
     dangerMessage: 'You must be logged in to view this page.'
   });
@@ -31,7 +31,7 @@ exports.isOwner = function(req, res, next) {
       if (note.author._id == req.user._id) {
         return next();
       } else {
-        res.render('./statics/errors.html', {
+        res.render('statics/errors.html', {
           title: 'Not Authorized',
           message: 'You are not authorized to do that.'
         });
@@ -57,7 +57,7 @@ exports.isAdmin = function(req, res, next) {
     if (user.admin) {
       return next();
     } else {
-      res.render('./statics/errors.html', {
+      res.render('statics/error.html', {
         title: 'error',
         message: 'You are not authorized to do that.'
       });
