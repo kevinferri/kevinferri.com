@@ -3,4 +3,7 @@ data
 .DS_Store
 npm-debug.log
 config/passport-info.js
-build
+public/stylesheets/bootstrap.min.css
+public/stylesheets/prism.min.css
+public/javascripts/bootstrap.min.js
+public/javascripts/prism.min.js
