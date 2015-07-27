@@ -107,6 +107,7 @@ form button {
 .note-title {
   color: #3e5050;
   letter-spacing: .1rem;
+  line-height: 1.4;
   font-weight: 600;
   margin-top: 0;
 }
